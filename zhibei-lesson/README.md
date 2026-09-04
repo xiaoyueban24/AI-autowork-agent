@@ -30,9 +30,9 @@ node generate.js       # 命令行生成（读 config.js），输出到 output/
 node server.js         # 启动 Web 界面，浏览器打开 http://localhost:3000
 ```
 
-或双击 `启动智备教案.bat` 一键启动并打开浏览器。
+或双击项目根目录的「一键启动.bat」一键启动并打开浏览器。
 
-**PPT 引擎切换**：默认 pptwise；`set ZHIBEI_PPT_ENGINE=slides` 后用 dsh-slides 引擎（输出 HTML 演示 + PPTX 双格式）。
+**引擎切换**：默认 pptwise；set ZHIBEI_PPT_ENGINE=slides 后用 dsh-slides 引擎（输出 HTML 演示 + PPTX 双格式）。
 
 ## 接入真实 AI（关键）
 
@@ -78,7 +78,7 @@ zhibei-lesson/
 ├── generate.js      # 命令行入口
 ├── server.js        # Web 服务
 ├── config.js        # 课程 + 模型配置示例
-├── 启动智备教案.bat  # 一键启动脚本
+├── 一键启动.bat  # 一键启动脚本
 └── public/          # Web 界面
 ```
 
