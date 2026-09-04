@@ -21,3 +21,7 @@ config.local.js
 Thumbs.db
 desktop.ini
 .DS_Store
+# ffmpeg 二进制与幻灯片临时文件
+.workbench/node_modules/
+.workbench/slideshow/
+.workbench/package*.json

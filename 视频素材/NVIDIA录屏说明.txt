@@ -1,0 +1,15 @@
+NVIDIA ShadowPlay 录屏快捷键（本机已验证注册）：
+  开始/停止录制：Alt + F9
+  截图：Alt + F10
+  即时回放保存（前5分钟）：Alt + F11
+  打开叠加层面板：Alt + Z
+
+视频默认保存到：C:\Users\梁玉彬\Videos
+
+若快捷键无效：打开 NVIDIA App → 叠加层 → 开启「录制与广播」。
+
+建议补录镜头：
+  1. 终端运行 node server.js 的启动画面
+  2. GitHub 仓库页面（xiaoyueban24/AI-autowork-agent）滚动浏览
+  3. 双击 一键启动.bat 的完整过程
+  4. 剪映里剪辑视频的幕后画面
