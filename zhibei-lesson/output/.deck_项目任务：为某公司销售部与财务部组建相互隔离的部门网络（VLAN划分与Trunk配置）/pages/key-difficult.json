@@ -1,0 +1,27 @@
+{
+  "components": [
+    {
+      "type": "comparison",
+      "columns": [
+        "教学重点",
+        "教学难点"
+      ],
+      "rows": [
+        {
+          "label": "内容",
+          "cells": [
+            "VLAN的创建、Access端口划分与跨交换机Tr…",
+            "理解跨交换机同VLAN通信时IEEE 802.1Q…"
+          ]
+        },
+        {
+          "label": "突破方法",
+          "cells": [
+            "案例演示 + 精讲",
+            "分层练习 + 反馈"
+          ]
+        }
+      ]
+    }
+  ]
+}

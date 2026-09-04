@@ -1,0 +1,66 @@
+{
+  "version": "1",
+  "filename": "课件_项目任务：为某公司销售部与财务部组建相互隔离的部门网络（VLAN划分与Trunk配置）.pptx",
+  "narrative": "training",
+  "theme": "classroom",
+  "meta": {
+    "organization": "计算机网络技术",
+    "date": "2025年3月18日（第2周 星期二 第3-4节）"
+  },
+  "pages": [
+    {
+      "id": "cover",
+      "type": "cover",
+      "heading": "项目任务：为某公司销售部与财务部组建相互隔离的部门网络（VLAN划分与Trunk配置）",
+      "summary": "计算机网络技术 · 模块三 交换技术与局域网组建"
+    },
+    {
+      "id": "goals",
+      "type": "content",
+      "kind": "points",
+      "heading": "学习目标",
+      "summary": "知识·能力·素养三维目标"
+    },
+    {
+      "id": "framework",
+      "type": "content",
+      "kind": "list",
+      "heading": "知识框架",
+      "summary": "本节课的知识点"
+    },
+    {
+      "id": "key-difficult",
+      "type": "content",
+      "kind": "comparison",
+      "heading": "重点与难点",
+      "summary": "教学重难点"
+    },
+    {
+      "id": "process",
+      "type": "content",
+      "kind": "process",
+      "heading": "教学过程",
+      "summary": "五个教学环节"
+    },
+    {
+      "id": "blackboard",
+      "type": "content",
+      "kind": "list",
+      "heading": "板书设计",
+      "summary": "板书框架"
+    },
+    {
+      "id": "homework",
+      "type": "content",
+      "kind": "list",
+      "heading": "作业布置",
+      "summary": "课后巩固"
+    },
+    {
+      "id": "ending",
+      "type": "ending",
+      "heading": "课堂小结",
+      "summary": "回顾 + 作业"
+    }
+  ]
+}

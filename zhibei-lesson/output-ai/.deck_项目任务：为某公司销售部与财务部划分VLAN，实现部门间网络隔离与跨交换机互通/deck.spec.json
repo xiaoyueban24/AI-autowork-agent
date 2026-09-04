@@ -1,0 +1,66 @@
+{
+  "version": "1",
+  "filename": "课件_项目任务：为某公司销售部与财务部划分VLAN，实现部门间网络隔离与跨交换机互通.pptx",
+  "narrative": "training",
+  "theme": "classroom",
+  "meta": {
+    "organization": "计算机网络技术",
+    "date": "2024-05-16"
+  },
+  "pages": [
+    {
+      "id": "cover",
+      "type": "cover",
+      "heading": "项目任务：为某公司销售部与财务部划分VLAN，实现部门间网络隔离与跨交换机互通",
+      "summary": "计算机网络技术 · 第四章 交换机的配置与管理"
+    },
+    {
+      "id": "goals",
+      "type": "content",
+      "kind": "points",
+      "heading": "学习目标",
+      "summary": "知识·能力·素养三维目标"
+    },
+    {
+      "id": "framework",
+      "type": "content",
+      "kind": "list",
+      "heading": "知识框架",
+      "summary": "本节课的知识点"
+    },
+    {
+      "id": "key-difficult",
+      "type": "content",
+      "kind": "comparison",
+      "heading": "重点与难点",
+      "summary": "教学重难点"
+    },
+    {
+      "id": "process",
+      "type": "content",
+      "kind": "process",
+      "heading": "教学过程",
+      "summary": "五个教学环节"
+    },
+    {
+      "id": "blackboard",
+      "type": "content",
+      "kind": "list",
+      "heading": "板书设计",
+      "summary": "板书框架"
+    },
+    {
+      "id": "homework",
+      "type": "content",
+      "kind": "list",
+      "heading": "作业布置",
+      "summary": "课后巩固"
+    },
+    {
+      "id": "ending",
+      "type": "ending",
+      "heading": "课堂小结",
+      "summary": "回顾 + 作业"
+    }
+  ]
+}

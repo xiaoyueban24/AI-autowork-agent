@@ -1,0 +1,14 @@
+{
+  "components": [
+    {
+      "type": "bullets",
+      "items": [
+        "VLAN配置实训",
+        "一、VLAN：逻辑隔离广播域；划分…",
+        "二、端口类型：Access（接PC…",
+        "三、配置三步：①vlan 10 创…",
+        "四、验证：show vlan br…"
+      ]
+    }
+  ]
+}

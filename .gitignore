@@ -1,0 +1,23 @@
+# 依赖与缓存
+node_modules/
+.npm-cache/
+.npmrc
+
+# 工具内部目录（会话工件，非项目内容）
+.workbench/
+.playwright-cli/
+.pptwise/
+
+# 插件安装包（110MB，可随时重新下载）
+插件下载/
+
+# 密钥与凭据（绝不入库）
+*.key
+*secret*
+abc_key.txt
+config.local.js
+
+# 系统文件
+Thumbs.db
+desktop.ini
+.DS_Store

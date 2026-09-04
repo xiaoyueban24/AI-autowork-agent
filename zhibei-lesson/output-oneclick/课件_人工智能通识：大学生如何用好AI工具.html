@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="und">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>人工智能通识：大学生如何用好AI工具</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #f4f4f5;
+  --text: #18181b;
+  --muted: #71717a;
+  --accent: #2563eb;
+  --heading-font: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --body-font: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; background: var(--bg); color: var(--text); font-family: var(--body-font); }
+body { overflow: hidden; }
+#stage { position: relative; width: 100vw; height: 100vh; display: grid; place-items: center; }
+.slide {
+  display: none;
+  width: min(100vw, calc(100vh * 16 / 9));
+  height: min(100vh, calc(100vw * 9 / 16));
+  padding: 6vmin 8vmin;
+  flex-direction: column;
+  /* Optically centred: a bottom bias lifts the block above true centre, which
+     keeps a three-bullet slide from floating and a six-bullet one from
+     drifting down. */
+  justify-content: center;
+  padding-bottom: 12vmin;
+  gap: 2.4vmin;
+}
+.slide.current { display: flex; }
+h1, h2 { font-family: var(--heading-font); font-weight: 700; margin: 0; line-height: 1.15; letter-spacing: -0.01em; }
+h1 { font-size: 6.4vmin; }
+h2 { font-size: 5.2vmin; }
+.subtitle { font-size: 3.2vmin; color: var(--muted); margin: 0; }
+.author { font-size: 2.6vmin; color: var(--muted); margin: 0; }
+ul { margin: 0; padding-left: 3.4vmin; display: flex; flex-direction: column; gap: 1.8vmin; }
+li { font-size: 3.4vmin; line-height: 1.4; }
+li::marker { color: var(--accent); }
+code { background: var(--surface); padding: 0.1em 0.35em; border-radius: 0.25em; font-size: 0.9em; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 1.4vmin; align-items: center; min-height: 0; }
+figure img { max-width: 100%; max-height: 62vmin; object-fit: contain; }
+figcaption { font-size: 2.4vmin; color: var(--muted); text-align: center; }
+.slide--bullets h2 { margin-bottom: 1.2vmin; }
+.slide--bullets ul, .slide--bullets .subtitle { max-width: 82%; }
+.slide--title h1 { font-size: 8vmin; }
+.slide--section h2 { font-size: 7vmin; color: var(--accent); }
+.slide--section::after { content: ''; display: block; width: 14vmin; height: 0.7vmin; background: var(--accent); }
+blockquote { margin: 0; font-family: var(--heading-font); font-size: 4.6vmin; line-height: 1.35; border-left: 0.8vmin solid var(--accent); padding-left: 3vmin; }
+.rule { width: 12vmin; height: 0.6vmin; background: var(--accent); }
+#chrome { position: fixed; right: 2.4vmin; bottom: 2vmin; font-size: 2vmin; color: var(--muted); font-family: var(--body-font); }
+#progress { position: fixed; left: 0; bottom: 0; height: 0.5vmin; background: var(--accent); transition: width 160ms ease; }
+#notes {
+  display: none; position: fixed; left: 0; right: 0; bottom: 0; max-height: 34vh; overflow: auto;
+  padding: 2.4vmin 3vmin; background: var(--surface); color: var(--text);
+  font-size: 2.2vmin; line-height: 1.5; white-space: pre-wrap; border-top: 0.3vmin solid var(--accent);
+}
+body.notes-open #notes { display: block; }
+#help { position: fixed; left: 2.4vmin; bottom: 2vmin; font-size: 1.9vmin; color: var(--muted); }
+@media print {
+  @page { size: 297mm 167mm; margin: 0; }
+  body { overflow: visible; }
+  #stage { display: block; width: auto; height: auto; }
+  .slide, .slide.current { display: flex !important; width: 297mm; height: 167mm; break-after: page; }
+  #chrome, #progress, #notes, #help { display: none !important; }
+}</style>
+</head>
+<body>
+<div id="stage"><section class="slide slide--title" data-index="0"><h1>人工智能通识：大学生如何用好AI工具</h1><p class="subtitle">从会用到用好：效率与底线并存的AI学习法 · 通识教育中心 · AI通识课教研组</p><div class="rule"></div></section>
+<section class="slide slide--title" data-index="1" data-notes="开场30秒说明课程定位：不讲技术原理，只解决一个问题——让每个学生把AI用得又快又稳。可先举手调查：用过AI辅助学习的请举手，快速拉近距离。"><h1>人工智能通识：大学生如何用好AI工具</h1><p class="subtitle">从会用到用好：效率与底线并存的AI学习法</p><div class="rule"></div></section>
+<section class="slide slide--section" data-index="2" data-notes="过渡页，停顿两秒再讲。预告本节回答两个问题：市面上有哪些工具，它们擅长和不擅长什么。"><h2>01 认识AI：工具地图与能力边界</h2><p class="subtitle">不神化、不贬低，先看清它是什么</p></section>
+<section class="slide slide--bullets" data-index="3" data-notes="可现场快速调查大家最常用哪个工具。强调多数同学只用对话类工具，其实搜索和文档类工具对学习帮助更大。"><h2>主流AI工具地图：按任务选型</h2><p class="subtitle">没有最好的工具，只有最匹配的工具</p><ul><li>对话问答：ChatGPT、DeepSeek、Kimi、豆包</li><li>联网搜索：Perplexity，答案自带来源链接</li><li>编程辅助：Copilot、Cursor 代码补全</li><li>文档处理：Kimi读长文、飞书妙记转写</li><li>选型原则：按任务匹配，别迷信单一产品</li></ul></section>
+<section class="slide slide--bullets" data-index="4" data-notes="讲一个真实幻觉案例：让AI列参考文献，其中两篇查无此文。强调凡是写进作业的事实和引用，一定要自己核实。"><h2>AI的能与不能：警惕幻觉</h2><p class="subtitle">用得放心的前提，是知道它哪里不可靠</p><ul><li>擅长：初稿生成、语言润色、翻译、调试代码</li><li>短板：最新事实、精确数据、深度原创观点</li><li>幻觉：会一本正经地编造不存在的文献</li><li>知识截止：训练数据有日期，新事不知情</li><li>定位：AI是副驾驶，方向盘必须在你手里</li></ul></section>
+<section class="slide slide--section" data-index="5" data-notes="进入实操部分，语速可稍快。预告接下来三页：怎么用、什么不能用、用好的关键习惯。"><h2>02 实战：学习场景与使用红线</h2><p class="subtitle">把AI用成加速器，而不是替代思考的拐杖</p></section>
+<section class="slide slide--bullets" data-index="6" data-notes="每条展开一个小案例，比如用AI解释Python报错比搜索引擎快十倍。特别强调'不代写'三个字，为下一页铺垫。"><h2>五个高频学习场景</h2><p class="subtitle">今晚回宿舍就能上手试</p><ul><li>论文：让AI梳理论点结构、润色语言，不代写</li><li>编程：贴上报错信息，让AI逐行解释原因</li><li>外语：AI当口语陪练，随时开口零成本</li><li>复习：把知识讲给AI听，用提问暴露漏洞</li><li>文献：长文先要摘要，再决定精读哪几篇</li></ul></section>
+<section class="slide slide--bullets" data-index="7" data-notes="全场最严肃的一页，放慢语速。可举一个公开报道的处分案例，并建议学生保存教务处AI使用规定的链接。"><h2>学术诚信：先划清红线</h2><p class="subtitle">这一页决定你是加分还是处分</p><ul><li>先查规则：各校各课程政策不同，动手前确认</li><li>红线：直接提交AI生成内容属于学术不端</li><li>规范引用：注明工具名、日期和使用方式</li><li>判断标准：AI是否替代了你本该做的思考</li><li>检测升级：AIGC检测与查重系统越来越严</li></ul></section>
+<section class="slide slide--bullets" data-index="8" data-notes="可现场演示同一个问题的两种问法对比，效果立竿见影。强调提示词不是玄学，本质是把话说清楚。"><h2>用好AI的四个习惯</h2><p class="subtitle">会提问的人，从AI得到的多十倍</p><ul><li>提问具体：给背景、给约束、给参考示例</li><li>多轮迭代：第一版答案很少是最优解</li><li>交叉验证：关键信息回到原始来源核对</li><li>保护隐私：作业原文、证件号不要直接粘贴</li></ul></section>
+<section class="slide slide--quote" data-index="9" data-notes="回扣开场：工具会年年更替，大学四年真正要练的是判断力。祝大家让AI成为杠杆，而不是拐杖。"><blockquote>结语</blockquote></section></div>
+<div id="progress"></div>
+<div id="chrome"></div>
+<div id="help">← → navigate · S notes · F fullscreen · Ctrl+P to PDF</div>
+<div id="notes"></div>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var counter = document.getElementById('chrome');
+  var progress = document.getElementById('progress');
+  var notes = document.getElementById('notes');
+  var current = 0;
+  function show(next) {
+    current = Math.max(0, Math.min(slides.length - 1, next));
+    slides.forEach(function (slide, index) { slide.classList.toggle('current', index === current); });
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+    progress.style.width = ((current + 1) / slides.length * 100) + '%';
+    notes.textContent = slides[current].getAttribute('data-notes') || '';
+    if (location.hash !== '#' + (current + 1)) history.replaceState(null, '', '#' + (current + 1));
+  }
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') { show(current + 1); event.preventDefault(); }
+    else if (event.key === 'ArrowLeft' || event.key === 'PageUp') { show(current - 1); event.preventDefault(); }
+    else if (event.key === 'Home') { show(0); }
+    else if (event.key === 'End') { show(slides.length - 1); }
+    else if (event.key === 's' || event.key === 'S') { document.body.classList.toggle('notes-open'); }
+    else if (event.key === 'f' || event.key === 'F') { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen(); }
+  });
+  document.addEventListener('click', function (event) { show(current + (event.clientX < window.innerWidth / 3 ? -1 : 1)); });
+  show(parseInt((location.hash || '#1').slice(1), 10) - 1 || 0);
+})();</script>
+</body>
+</html>

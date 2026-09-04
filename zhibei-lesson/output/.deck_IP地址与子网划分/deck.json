@@ -1,0 +1,170 @@
+{
+  "version": "5",
+  "filename": "课件_IP地址与子网划分.pptx",
+  "narrative": "training",
+  "theme": {
+    "id": "classroom"
+  },
+  "meta": {
+    "organization": "计算机网络基础",
+    "date": "2026/9/3"
+  },
+  "assets": {
+    "images": {}
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "id": "cover",
+      "heading": "IP地址与子网划分",
+      "subheading": "计算机网络基础 · 第3章 网络层",
+      "components": []
+    },
+    {
+      "type": "content",
+      "kind": "points",
+      "id": "goals",
+      "heading": "学习目标",
+      "components": [
+        {
+          "type": "numbered_cards",
+          "items": [
+            {
+              "title": "知识目标",
+              "text": "掌握 IP地址的概念与分类、子网掩码的作用、子网划分的方法、CIDR 无类别编址 的基本概念、…"
+            },
+            {
+              "title": "能力目标",
+              "text": "能运用 IP地址的概念与分类 相关知识分析与解决实际问题。"
+            },
+            {
+              "title": "素养目标",
+              "text": "培养严谨求实的科学态度与职业素养。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "list",
+      "id": "framework",
+      "heading": "知识框架",
+      "components": [
+        {
+          "type": "bullets",
+          "items": [
+            "知识点1 · IP地址的概念与分类",
+            "知识点2 · 子网掩码的作用",
+            "知识点3 · 子网划分的方法",
+            "知识点4 · CIDR 无类别编址"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "comparison",
+      "id": "key-difficult",
+      "heading": "重点与难点",
+      "components": [
+        {
+          "type": "comparison",
+          "columns": [
+            "教学重点",
+            "教学难点"
+          ],
+          "rows": [
+            {
+              "label": "内容",
+              "cells": [
+                "IP地址的概念与分类 的概念与核心方法",
+                "子网掩码的作用 的理解与应用"
+              ]
+            },
+            {
+              "label": "突破方法",
+              "cells": [
+                "案例演示 + 精讲",
+                "分层练习 + 反馈"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "process",
+      "id": "process",
+      "heading": "教学过程",
+      "components": [
+        {
+          "type": "steps",
+          "items": [
+            {
+              "title": "导入新课",
+              "text": "5min · 以生活/岗位实例设疑引入，展示学习目标。"
+            },
+            {
+              "title": "新课讲授",
+              "text": "40min · 知识点1「IP地址的概念与分类」：讲解概念…"
+            },
+            {
+              "title": "巩固练习",
+              "text": "25min · 布置分层练习与小组任务，巡回指导纠错。"
+            },
+            {
+              "title": "课堂小结",
+              "text": "10min · 梳理知识框架，强调重难点与易错点。"
+            },
+            {
+              "title": "作业布置",
+              "text": "10min · 布置课后作业与拓展任务。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "list",
+      "id": "blackboard",
+      "heading": "板书设计",
+      "components": [
+        {
+          "type": "bullets",
+          "items": [
+            "IP地址与子网划分",
+            "IP地址的概念与分类 的概念与核心…",
+            "子网掩码的作用 的理解与应用",
+            "IP地址的概念与分类 → 子网掩码…"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "list",
+      "id": "homework",
+      "heading": "作业布置",
+      "components": [
+        {
+          "type": "bullets",
+          "items": [
+            "完成 IP地址与子网划分 相关课后练习。",
+            "提交：学习平台线上提交",
+            "评价：准确性 + 完整性"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ending",
+      "id": "ending",
+      "heading": "课堂小结",
+      "subheading": "回顾 + 作业",
+      "components": []
+    }
+  ]
+}

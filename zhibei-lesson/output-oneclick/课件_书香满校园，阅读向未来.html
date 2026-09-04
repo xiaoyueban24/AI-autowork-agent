@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="und">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>书香满校园，阅读向未来</title>
+<style>
+:root {
+  --bg: #fffbf5;
+  --surface: #fdf0e0;
+  --text: #27272a;
+  --muted: #78716c;
+  --accent: #ea580c;
+  --heading-font: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --body-font: Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; background: var(--bg); color: var(--text); font-family: var(--body-font); }
+body { overflow: hidden; }
+#stage { position: relative; width: 100vw; height: 100vh; display: grid; place-items: center; }
+.slide {
+  display: none;
+  width: min(100vw, calc(100vh * 16 / 9));
+  height: min(100vh, calc(100vw * 9 / 16));
+  padding: 6vmin 8vmin;
+  flex-direction: column;
+  /* Optically centred: a bottom bias lifts the block above true centre, which
+     keeps a three-bullet slide from floating and a six-bullet one from
+     drifting down. */
+  justify-content: center;
+  padding-bottom: 12vmin;
+  gap: 2.4vmin;
+}
+.slide.current { display: flex; }
+h1, h2 { font-family: var(--heading-font); font-weight: 700; margin: 0; line-height: 1.15; letter-spacing: -0.01em; }
+h1 { font-size: 6.4vmin; }
+h2 { font-size: 5.2vmin; }
+.subtitle { font-size: 3.2vmin; color: var(--muted); margin: 0; }
+.author { font-size: 2.6vmin; color: var(--muted); margin: 0; }
+ul { margin: 0; padding-left: 3.4vmin; display: flex; flex-direction: column; gap: 1.8vmin; }
+li { font-size: 3.4vmin; line-height: 1.4; }
+li::marker { color: var(--accent); }
+code { background: var(--surface); padding: 0.1em 0.35em; border-radius: 0.25em; font-size: 0.9em; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 1.4vmin; align-items: center; min-height: 0; }
+figure img { max-width: 100%; max-height: 62vmin; object-fit: contain; }
+figcaption { font-size: 2.4vmin; color: var(--muted); text-align: center; }
+.slide--bullets h2 { margin-bottom: 1.2vmin; }
+.slide--bullets ul, .slide--bullets .subtitle { max-width: 82%; }
+.slide--title h1 { font-size: 8vmin; }
+.slide--section h2 { font-size: 7vmin; color: var(--accent); }
+.slide--section::after { content: ''; display: block; width: 14vmin; height: 0.7vmin; background: var(--accent); }
+blockquote { margin: 0; font-family: var(--heading-font); font-size: 4.6vmin; line-height: 1.35; border-left: 0.8vmin solid var(--accent); padding-left: 3vmin; }
+.rule { width: 12vmin; height: 0.6vmin; background: var(--accent); }
+#chrome { position: fixed; right: 2.4vmin; bottom: 2vmin; font-size: 2vmin; color: var(--muted); font-family: var(--body-font); }
+#progress { position: fixed; left: 0; bottom: 0; height: 0.5vmin; background: var(--accent); transition: width 160ms ease; }
+#notes {
+  display: none; position: fixed; left: 0; right: 0; bottom: 0; max-height: 34vh; overflow: auto;
+  padding: 2.4vmin 3vmin; background: var(--surface); color: var(--text);
+  font-size: 2.2vmin; line-height: 1.5; white-space: pre-wrap; border-top: 0.3vmin solid var(--accent);
+}
+body.notes-open #notes { display: block; }
+#help { position: fixed; left: 2.4vmin; bottom: 2vmin; font-size: 1.9vmin; color: var(--muted); }
+@media print {
+  @page { size: 297mm 167mm; margin: 0; }
+  body { overflow: visible; }
+  #stage { display: block; width: auto; height: auto; }
+  .slide, .slide.current { display: flex !important; width: 297mm; height: 167mm; break-after: page; }
+  #chrome, #progress, #notes, #help { display: none !important; }
+}</style>
+</head>
+<body>
+<div id="stage"><section class="slide slide--title" data-index="0"><h1>书香满校园，阅读向未来</h1><p class="subtitle">首届校园读书节活动策划方案 · 校团委·学生会学习部</p><div class="rule"></div></section>
+<section class="slide slide--title" data-index="1" data-notes="开场欢迎大家，说明本次读书节旨在营造校园阅读氛围，预计持续两周，覆盖全体师生。"><h1>书香满校园，阅读向未来</h1><p class="subtitle">首届校园读书节活动策划方案</p><div class="rule"></div></section>
+<section class="slide slide--bullets" data-index="2" data-notes="用数据说明现状，强调读书节不是一次性活动，而是建立长效阅读文化的起点。"><h2>活动背景与目标</h2><p class="subtitle">为什么要办读书节</p><ul><li>碎片化阅读盛行，深度阅读时间不足</li><li>图书馆借阅率近三年下降约两成</li><li>目标一：人均借阅量提升30%</li><li>目标二：打造品牌社团与阅读社群</li><li>目标三：形成可持续的年度活动机制</li></ul></section>
+<section class="slide slide--section" data-index="3" data-notes="过渡页，预告接下来将按板块详细介绍具体活动内容。"><h2>活动方案总览</h2><p class="subtitle">四大板块·两周全程·全员参与</p></section>
+<section class="slide slide--bullets" data-index="4" data-notes="重点讲组队机制能提升坚持率，书评结集让参与成果看得见、留得住。"><h2>板块一：共读打卡</h2><p class="subtitle">21天阅读挑战赛</p><ul><li>小程序每日打卡，记录阅读时长与心得</li><li>自由组队参赛，每队4至6人</li><li>设坚持奖、进步奖、最佳书评奖</li><li>图书馆提供打卡书目专架</li><li>优秀书评结集成册发放</li></ul></section>
+<section class="slide slide--bullets" data-index="5" data-notes="强调动静结合：市集和展览可自由参与，朗读夜和课本剧是高潮场次，需提前报名。"><h2>板块二：互动活动</h2><p class="subtitle">现场活动周</p><ul><li>好书漂流市集：捐一本书，换一本书</li><li>作者进校园：邀请本地作家开讲座</li><li>朗读者之夜：配乐诵读专场演出</li><li>课本剧大赛：经典文学改编舞台剧</li><li>读书主题摄影与书签设计展</li></ul></section>
+<section class="slide slide--bullets" data-index="6" data-notes="说明三周节奏紧凑但不影响教学，明确各部门职责边界，预算已报学校审批。"><h2>组织保障与时间安排</h2><p class="subtitle">谁来做·何时做</p><ul><li>第1周：宣传启动，报名与组队</li><li>第2周：打卡进行，市集与展览开放</li><li>第3周：讲座、演出与颁奖闭幕</li><li>分工：团委统筹，社团协办，班级落地</li><li>预算约8000元：奖品、物料、嘉宾费</li></ul></section>
+<section class="slide slide--quote" data-index="7" data-notes="收束主题，号召师生现场扫码加入共读社群，宣布报名通道今日开启。"><blockquote>让阅读成为习惯</blockquote></section></div>
+<div id="progress"></div>
+<div id="chrome"></div>
+<div id="help">← → navigate · S notes · F fullscreen · Ctrl+P to PDF</div>
+<div id="notes"></div>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var counter = document.getElementById('chrome');
+  var progress = document.getElementById('progress');
+  var notes = document.getElementById('notes');
+  var current = 0;
+  function show(next) {
+    current = Math.max(0, Math.min(slides.length - 1, next));
+    slides.forEach(function (slide, index) { slide.classList.toggle('current', index === current); });
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+    progress.style.width = ((current + 1) / slides.length * 100) + '%';
+    notes.textContent = slides[current].getAttribute('data-notes') || '';
+    if (location.hash !== '#' + (current + 1)) history.replaceState(null, '', '#' + (current + 1));
+  }
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') { show(current + 1); event.preventDefault(); }
+    else if (event.key === 'ArrowLeft' || event.key === 'PageUp') { show(current - 1); event.preventDefault(); }
+    else if (event.key === 'Home') { show(0); }
+    else if (event.key === 'End') { show(slides.length - 1); }
+    else if (event.key === 's' || event.key === 'S') { document.body.classList.toggle('notes-open'); }
+    else if (event.key === 'f' || event.key === 'F') { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen(); }
+  });
+  document.addEventListener('click', function (event) { show(current + (event.clientX < window.innerWidth / 3 ? -1 : 1)); });
+  show(parseInt((location.hash || '#1').slice(1), 10) - 1 || 0);
+})();</script>
+</body>
+</html>

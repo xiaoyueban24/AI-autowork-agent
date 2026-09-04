@@ -1,0 +1,22 @@
+[
+  {
+    "window": "窗口1",
+    "path": "一体化生成台.html",
+    "kind": "html"
+  },
+  {
+    "window": "窗口2",
+    "path": "竞品观察室.html",
+    "kind": "html"
+  },
+  {
+    "window": "窗口3",
+    "path": "成品效果总览.html",
+    "kind": "html"
+  },
+  {
+    "window": "窗口4",
+    "path": "一键生成控制台.html",
+    "kind": "html"
+  }
+]

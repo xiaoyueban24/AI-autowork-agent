@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="und">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IP地址与子网划分</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #f4f4f5;
+  --text: #18181b;
+  --muted: #71717a;
+  --accent: #2563eb;
+  --heading-font: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --body-font: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; background: var(--bg); color: var(--text); font-family: var(--body-font); }
+body { overflow: hidden; }
+#stage { position: relative; width: 100vw; height: 100vh; display: grid; place-items: center; }
+.slide {
+  display: none;
+  width: min(100vw, calc(100vh * 16 / 9));
+  height: min(100vh, calc(100vw * 9 / 16));
+  padding: 6vmin 8vmin;
+  flex-direction: column;
+  /* Optically centred: a bottom bias lifts the block above true centre, which
+     keeps a three-bullet slide from floating and a six-bullet one from
+     drifting down. */
+  justify-content: center;
+  padding-bottom: 12vmin;
+  gap: 2.4vmin;
+}
+.slide.current { display: flex; }
+h1, h2 { font-family: var(--heading-font); font-weight: 700; margin: 0; line-height: 1.15; letter-spacing: -0.01em; }
+h1 { font-size: 6.4vmin; }
+h2 { font-size: 5.2vmin; }
+.subtitle { font-size: 3.2vmin; color: var(--muted); margin: 0; }
+.author { font-size: 2.6vmin; color: var(--muted); margin: 0; }
+ul { margin: 0; padding-left: 3.4vmin; display: flex; flex-direction: column; gap: 1.8vmin; }
+li { font-size: 3.4vmin; line-height: 1.4; }
+li::marker { color: var(--accent); }
+code { background: var(--surface); padding: 0.1em 0.35em; border-radius: 0.25em; font-size: 0.9em; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 1.4vmin; align-items: center; min-height: 0; }
+figure img { max-width: 100%; max-height: 62vmin; object-fit: contain; }
+figcaption { font-size: 2.4vmin; color: var(--muted); text-align: center; }
+.slide--bullets h2 { margin-bottom: 1.2vmin; }
+.slide--bullets ul, .slide--bullets .subtitle { max-width: 82%; }
+.slide--title h1 { font-size: 8vmin; }
+.slide--section h2 { font-size: 7vmin; color: var(--accent); }
+.slide--section::after { content: ''; display: block; width: 14vmin; height: 0.7vmin; background: var(--accent); }
+blockquote { margin: 0; font-family: var(--heading-font); font-size: 4.6vmin; line-height: 1.35; border-left: 0.8vmin solid var(--accent); padding-left: 3vmin; }
+.rule { width: 12vmin; height: 0.6vmin; background: var(--accent); }
+#chrome { position: fixed; right: 2.4vmin; bottom: 2vmin; font-size: 2vmin; color: var(--muted); font-family: var(--body-font); }
+#progress { position: fixed; left: 0; bottom: 0; height: 0.5vmin; background: var(--accent); transition: width 160ms ease; }
+#notes {
+  display: none; position: fixed; left: 0; right: 0; bottom: 0; max-height: 34vh; overflow: auto;
+  padding: 2.4vmin 3vmin; background: var(--surface); color: var(--text);
+  font-size: 2.2vmin; line-height: 1.5; white-space: pre-wrap; border-top: 0.3vmin solid var(--accent);
+}
+body.notes-open #notes { display: block; }
+#help { position: fixed; left: 2.4vmin; bottom: 2vmin; font-size: 1.9vmin; color: var(--muted); }
+@media print {
+  @page { size: 297mm 167mm; margin: 0; }
+  body { overflow: visible; }
+  #stage { display: block; width: auto; height: auto; }
+  .slide, .slide.current { display: flex !important; width: 297mm; height: 167mm; break-after: page; }
+  #chrome, #progress, #notes, #help { display: none !important; }
+}</style>
+</head>
+<body>
+<div id="stage"><section class="slide slide--title" data-index="0"><h1>IP地址与子网划分</h1><p class="subtitle">计算机网络基础 · 第3章 网络层 · 智备教案</p><div class="rule"></div></section>
+<section class="slide slide--title" data-index="1" data-notes="开场页：介绍主题，说明学习目标。"><h1>IP地址与子网划分</h1><p class="subtitle">计算机网络基础 · 第3章 网络层｜2 课时（90 分钟）</p><div class="rule"></div></section>
+<section class="slide slide--bullets" data-index="2" data-notes="三维目标逐条讲解，强调递进关系。"><h2>学习目标</h2><ul><li>知识：掌握 IP地址的概念与分类、子网掩码的作用、子网划分的方法、CIDR 无类别编址 的基本概念、原理与方法。</li><li>能力：能运用 IP地址的概念与分类 相关知识分析与解决实际问题。</li><li>素养：培养严谨求实的科学态度与职业素养。</li></ul></section>
+<section class="slide slide--bullets" data-index="3" data-notes="构建整体认知地图，说明知识点逻辑顺序。"><h2>知识框架</h2><ul><li>知识点1 · IP地址与子网划分</li></ul></section>
+<section class="slide slide--bullets" data-index="4" data-notes="先讲重点再讲难点，说明突破策略。"><h2>重点与难点</h2><ul><li>重点：IP地址的概念与分类 的概念与核心方法</li><li>难点：子网掩码的作用 的理解与应用</li></ul></section>
+<section class="slide slide--bullets" data-index="5" data-notes="以生活/岗位实例设疑引入，展示学习目标。 意图：创设情境、激活前备知识。"><h2>导入新课</h2><ul><li>5min · 教师：以生活/岗位实例设疑引入，展示学习目标。</li><li>学生：观察情境，思考并回答提问。</li><li>意图：创设情境、激活前备知识。</li></ul></section>
+<section class="slide slide--bullets" data-index="6" data-notes="知识点1「IP地址的概念与分类」：讲解概念 → 演示案例 → 归纳要点，结合课件与板书逐步展开。；知识点2「子网掩码的作用」：讲解概念 → 演示案例 → 归纳要点，结合课件与板书逐步展开。；知识点3「子网划分的方法」：讲解概念 → 演示案例 → 归纳要点，结合课件与板书逐步展开。；知识点4「CIDR 无类别编址」：讲解概念 → 演示案例 → 归纳要点，结合课件与板书逐步展开。 意图：由浅入深突破重难点。"><h2>新课讲授</h2><ul><li>40min · 教师：知识点1「IP地址的概念与分类」：讲解概念 → 演示案例 → 归纳要点，结合课件与板书逐步展开。；知识点2「…</li><li>学生：听讲记笔记，参与问答与课堂练习。</li><li>意图：由浅入深突破重难点。</li></ul></section>
+<section class="slide slide--bullets" data-index="7" data-notes="布置分层练习与小组任务，巡回指导纠错。 意图：即时检测，学以致用。"><h2>巩固练习</h2><ul><li>25min · 教师：布置分层练习与小组任务，巡回指导纠错。</li><li>学生：独立或协作完成任务，互评互纠。</li><li>意图：即时检测，学以致用。</li></ul></section>
+<section class="slide slide--bullets" data-index="8" data-notes="梳理知识框架，强调重难点与易错点。 意图：形成结构化记忆。"><h2>课堂小结</h2><ul><li>10min · 教师：梳理知识框架，强调重难点与易错点。</li><li>学生：回顾总结，提出疑问。</li><li>意图：形成结构化记忆。</li></ul></section>
+<section class="slide slide--bullets" data-index="9" data-notes="布置课后作业与拓展任务。 意图：巩固课堂所学，延伸课外。"><h2>作业布置</h2><ul><li>10min · 教师：布置课后作业与拓展任务。</li><li>学生：记录作业与要求。</li><li>意图：巩固课堂所学，延伸课外。</li></ul></section>
+<section class="slide slide--bullets" data-index="10" data-notes="边讲边写板书，强调结构。"><h2>板书设计</h2><ul><li>IP地址与子网划分</li><li>IP地址的概念与分类 的概念与核心方法</li><li>子网掩码的作用 的理解与应用</li><li>IP地址的概念与分类 → 子网掩码的作用 → 子网划分的方法 → CIDR 无…</li></ul></section>
+<section class="slide slide--bullets" data-index="11" data-notes="明确提交要求与评价标准。"><h2>作业布置</h2><ul><li>完成 IP地址与子网划分 相关课后练习。</li><li>提交：学习平台线上提交</li><li>评价：准确性 + 完整性</li></ul></section>
+<section class="slide slide--quote" data-index="12" data-notes="回顾总结，预告下节课。"><blockquote>课堂小结</blockquote></section></div>
+<div id="progress"></div>
+<div id="chrome"></div>
+<div id="help">← → navigate · S notes · F fullscreen · Ctrl+P to PDF</div>
+<div id="notes"></div>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var counter = document.getElementById('chrome');
+  var progress = document.getElementById('progress');
+  var notes = document.getElementById('notes');
+  var current = 0;
+  function show(next) {
+    current = Math.max(0, Math.min(slides.length - 1, next));
+    slides.forEach(function (slide, index) { slide.classList.toggle('current', index === current); });
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+    progress.style.width = ((current + 1) / slides.length * 100) + '%';
+    notes.textContent = slides[current].getAttribute('data-notes') || '';
+    if (location.hash !== '#' + (current + 1)) history.replaceState(null, '', '#' + (current + 1));
+  }
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') { show(current + 1); event.preventDefault(); }
+    else if (event.key === 'ArrowLeft' || event.key === 'PageUp') { show(current - 1); event.preventDefault(); }
+    else if (event.key === 'Home') { show(0); }
+    else if (event.key === 'End') { show(slides.length - 1); }
+    else if (event.key === 's' || event.key === 'S') { document.body.classList.toggle('notes-open'); }
+    else if (event.key === 'f' || event.key === 'F') { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen(); }
+  });
+  document.addEventListener('click', function (event) { show(current + (event.clientX < window.innerWidth / 3 ? -1 : 1)); });
+  show(parseInt((location.hash || '#1').slice(1), 10) - 1 || 0);
+})();</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="und">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>直播带货的运营策略（项目任务：策划并诊断一场3分钟模拟直播）</title>
+<style>
+:root {
+  --bg: #fffbf5;
+  --surface: #fdf0e0;
+  --text: #27272a;
+  --muted: #78716c;
+  --accent: #ea580c;
+  --heading-font: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --body-font: Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; background: var(--bg); color: var(--text); font-family: var(--body-font); }
+body { overflow: hidden; }
+#stage { position: relative; width: 100vw; height: 100vh; display: grid; place-items: center; }
+.slide {
+  display: none;
+  width: min(100vw, calc(100vh * 16 / 9));
+  height: min(100vh, calc(100vw * 9 / 16));
+  padding: 6vmin 8vmin;
+  flex-direction: column;
+  /* Optically centred: a bottom bias lifts the block above true centre, which
+     keeps a three-bullet slide from floating and a six-bullet one from
+     drifting down. */
+  justify-content: center;
+  padding-bottom: 12vmin;
+  gap: 2.4vmin;
+}
+.slide.current { display: flex; }
+h1, h2 { font-family: var(--heading-font); font-weight: 700; margin: 0; line-height: 1.15; letter-spacing: -0.01em; }
+h1 { font-size: 6.4vmin; }
+h2 { font-size: 5.2vmin; }
+.subtitle { font-size: 3.2vmin; color: var(--muted); margin: 0; }
+.author { font-size: 2.6vmin; color: var(--muted); margin: 0; }
+ul { margin: 0; padding-left: 3.4vmin; display: flex; flex-direction: column; gap: 1.8vmin; }
+li { font-size: 3.4vmin; line-height: 1.4; }
+li::marker { color: var(--accent); }
+code { background: var(--surface); padding: 0.1em 0.35em; border-radius: 0.25em; font-size: 0.9em; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 1.4vmin; align-items: center; min-height: 0; }
+figure img { max-width: 100%; max-height: 62vmin; object-fit: contain; }
+figcaption { font-size: 2.4vmin; color: var(--muted); text-align: center; }
+.slide--bullets h2 { margin-bottom: 1.2vmin; }
+.slide--bullets ul, .slide--bullets .subtitle { max-width: 82%; }
+.slide--title h1 { font-size: 8vmin; }
+.slide--section h2 { font-size: 7vmin; color: var(--accent); }
+.slide--section::after { content: ''; display: block; width: 14vmin; height: 0.7vmin; background: var(--accent); }
+blockquote { margin: 0; font-family: var(--heading-font); font-size: 4.6vmin; line-height: 1.35; border-left: 0.8vmin solid var(--accent); padding-left: 3vmin; }
+.rule { width: 12vmin; height: 0.6vmin; background: var(--accent); }
+#chrome { position: fixed; right: 2.4vmin; bottom: 2vmin; font-size: 2vmin; color: var(--muted); font-family: var(--body-font); }
+#progress { position: fixed; left: 0; bottom: 0; height: 0.5vmin; background: var(--accent); transition: width 160ms ease; }
+#notes {
+  display: none; position: fixed; left: 0; right: 0; bottom: 0; max-height: 34vh; overflow: auto;
+  padding: 2.4vmin 3vmin; background: var(--surface); color: var(--text);
+  font-size: 2.2vmin; line-height: 1.5; white-space: pre-wrap; border-top: 0.3vmin solid var(--accent);
+}
+body.notes-open #notes { display: block; }
+#help { position: fixed; left: 2.4vmin; bottom: 2vmin; font-size: 1.9vmin; color: var(--muted); }
+@media print {
+  @page { size: 297mm 167mm; margin: 0; }
+  body { overflow: visible; }
+  #stage { display: block; width: auto; height: auto; }
+  .slide, .slide.current { display: flex !important; width: 297mm; height: 167mm; break-after: page; }
+  #chrome, #progress, #notes, #help { display: none !important; }
+}</style>
+</head>
+<body>
+<div id="stage"><section class="slide slide--title" data-index="0"><h1>直播带货的运营策略（项目任务：策划并诊断一场3分钟模拟直播）</h1><p class="subtitle">电子商务基础 · 第5章 网络营销 · 李婷</p><div class="rule"></div></section>
+<section class="slide slide--title" data-index="1" data-notes="开场页：介绍主题，说明学习目标。"><h1>直播带货的运营策略（项目任务：策划并诊断一场3分钟模拟直播）</h1><p class="subtitle">电子商务基础 · 第5章 网络营销｜2课时（90分钟，环节一至四为第一课时45分钟、环节五至八为第二课时45分钟，课间为明确切分点）</p><div class="rule"></div></section>
+<section class="slide slide--bullets" data-index="2" data-notes="三维目标逐条讲解，强调递进关系。"><h2>学习目标</h2><ul><li>知识：能说出直播带货的定义，并能对应'人—货—场'重构逻辑说出主播、中控、运营、投手、选品、客服六大岗位职责（课前微课自学达…</li><li>能力：能在小组中独立承担选品、主播等岗位，完成一场直播的三层排品表与定价方案设计；能运用FABE模型合作编写'开场—留人—讲…</li><li>素养：具备《广告法》与《网络直播营销管理办法》合规红线意识，能主动规避极限词、虚假宣传与过度憋单；养成数据驱动决策、诚信履约…</li></ul></section>
+<section class="slide slide--bullets" data-index="3" data-notes="构建整体认知地图，说明知识点逻辑顺序。"><h2>知识框架</h2><ul><li>知识点1 · 直播带货的运营策略（项目任务：策划并诊断一场3分钟模拟直播）</li></ul></section>
+<section class="slide slide--bullets" data-index="4" data-notes="先讲重点再讲难点，说明突破策略。"><h2>重点与难点</h2><ul><li>重点：掌握引流款、利润款、形象款三层选品与四种定价方法的组合运用，以及'开场—留人—讲解—催单—结尾'五段式话术的编写与演绎。</li><li>难点：GPM与UV价值的分母口径辨析，以及含退货率与退货物流成本的真实利润核算与流量漏斗问题定位（数据复盘环节为教学重点兼难…</li></ul></section>
+<section class="slide slide--bullets" data-index="5" data-notes="播放蜂花'79元套餐'直播切片（约2分钟），提问'直播间一夜卖断货，靠的只是低价吗？'引发讨论；随后用2道连线与排序快答题检测课前微课（全流程与六大岗位）预习效果并即时纠错，板书本课两条主线关键词：选品定价·话术、数据复盘。 意图：用真实行业热点制造认知冲突、暴露'低价＋流量＝成功'误区；以测代讲回收课前微课成果，为课堂聚焦选品话术与数据复盘两条主线腾出时间。"><h2>情境导入·预习检测</h2><ul><li>6min · 教师：播放蜂花'79元套餐'直播切片（约2分钟），提问'直播间一夜卖断货，靠的只是低价吗？'引发讨论；随后用2道连…</li><li>学生：观看案例、围绕问题抢答；完成岗位连线与流程排序检测题，在任务单上写下自己对直播带货的3个疑问。</li><li>意图：用真实行业热点制造认知冲突、暴露'低价＋流量＝成功'误区；以测代讲回收课前微课成果，为课…</li></ul></section>
+<section class="slide slide--bullets" data-index="6" data-notes="以'校园好物直播专场'为例，演示引流款（9.9元）、利润款、形象款三层排品逻辑与讲解时长分配；现场演示锚定划线、限时秒杀、组合买赠、阶梯满减四种定价方法；结合口径对比卡演算'坑位费＋佣金＋运费＋退货物流损耗'下单件真实利润（以售价99元、退货率30%的利润款为例）。 意图：通过含退货口径的真实利润演算打破'全网低价＝万能'的误区，让学生理解引流款'拉流量而非盈利'的定位，落实选品定价这一教学重点。"><h2>示范演示·三层选品与四…</h2><ul><li>14min · 教师：以'校园好物直播专场'为例，演示引流款（9.9元）、利润款、形象款三层排品逻辑与讲解时长分配；现场演示锚定划…</li><li>学生：跟随教师逐步演算单件真实利润，在笔记中归纳四种定价背后的心理依据（锚定效应、损失厌恶、稀缺紧迫、凑单心理）。</li><li>意图：通过含退货口径的真实利润演算打破'全网低价＝万能'的误区，让学生理解引流款'拉流量而非盈…</li></ul></section>
+<section class="slide slide--bullets" data-index="7" data-notes="发布情境任务：各组抽签垂类（零食/母婴/服装/美妆），基于给定粉丝画像，用填空式模板完成一页排品表与定价方案；编写3分钟五段式话术（半成品脚本已提供开场、留人、结尾框架，重点补全产品讲解与催单段落）并组内预演；教师巡回指导，重点纠正排品顺序与催单逻辑。 意图：填空式半成品模板降低编写负荷、话术压缩至3分钟，确保20分钟内当堂完成；六岗分工实现人人有岗、岗岗有责，把重点知识转化为岗位技能。"><h2>任务实训·排品定价与话…</h2><ul><li>20min · 教师：发布情境任务：各组抽签垂类（零食/母婴/服装/美妆），基于给定粉丝画像，用填空式模板完成一页排品表与定价方案…</li><li>学生：小组按主播、中控、运营、选品、投手、客服六岗分工（4—5人可兼岗）完成任务，每岗有明确产出物；组内预演后推选…</li><li>意图：填空式半成品模板降低编写负荷、话术压缩至3分钟，确保20分钟内当堂完成；六岗分工实现人人…</li></ul></section>
+<section class="slide slide--bullets" data-index="8" data-notes="抽取2组上台各演绎1分钟'催单'片段；引导其余组持话术合规红线检查表查找'最低价''第一'等违规表述并互评打分；宣布第一课时结束，预告第二课时数据复盘任务。 意图：以最小展示成本暴露话术合规易错点，渗透《广告法》红线意识；实训任务在第一课时内闭环，课时切分点清晰不截断实训。"><h2>成果展示·催单演绎与合…</h2><ul><li>5min · 教师：抽取2组上台各演绎1分钟'催单'片段；引导其余组持话术合规红线检查表查找'最低价''第一'等违规表述并互评打…</li><li>学生：展示组演绎催单片段；观察组对照合规检查表记录违规点并评分，各提出1条修改建议。</li><li>意图：以最小展示成本暴露话术合规易错点，渗透《广告法》红线意识；实训任务在第一课时内闭环，课时…</li></ul></section>
+<section class="slide slide--bullets" data-index="9" data-notes="第二课时开场2分钟回收各组直播演练疑点；发放完整模拟后台数据包（观看人次8万、去重场观人数5万、下单人数3500、成交订单数4200、GMV25万元及坑位费、佣金率、单均运费、退货物流成本等字段），示范借助口径对比卡辨析GPM（GMV÷观看人次×1000，示例＝3125元）与UV价值（GMV÷去重场观人数，示例＝5元）的分母差异；带领全班按'曝光—进入—停留—互动—下单—成交'流量漏斗逐层演算转… 意图：以口径对比卡为脚手架化解GPM与UV价值分母混淆这一抽象难点；含退货物流成本的真实字段迫使学生直面利润真相，落实数据驱动决策的核心素养。"><h2>突破重难点·数据复盘工…</h2><ul><li>28min · 教师：第二课时开场2分钟回收各组直播演练疑点；发放完整模拟后台数据包（观看人次8万、去重场观人数5万、下单人数35…</li><li>学生：对照口径对比卡演算GPM与UV价值并在旁标注分母依据；小组分工计算各层转化率与净利润，参照行业均值定位问题环…</li><li>意图：以口径对比卡为脚手架化解GPM与UV价值分母混淆这一抽象难点；含退货物流成本的真实字段迫…</li></ul></section>
+<section class="slide slide--bullets" data-index="10" data-notes="边讲边写板书，强调结构。"><h2>板书设计</h2><ul><li>直播带货的运营策略——选品·话术·数据复盘</li><li>左：主线一 选品与话术</li><li>1.三层排品：引流款（拉流量）→利润款（赚钱）→形象款（立人设）</li><li>2.四种定价：锚定划线｜限时秒杀｜组合买赠｜阶梯满减</li><li>3.五段话术：开场—留人—讲解—催单—结尾（FABE）</li></ul></section>
+<section class="slide slide--bullets" data-index="11" data-notes="明确提交要求与评价标准。"><h2>作业布置</h2><ul><li>基础题（全员必做）：订正并完善本组《数据复盘诊断表》终稿，重新演算GPM、UV价值、各层转化率与净利润各1遍，在旁标注口径与分母依据；拓展/实操题（小组协作）…</li><li>提交：学习平台线上提交</li><li>评价：准确性 + 完整性</li></ul></section>
+<section class="slide slide--quote" data-index="12" data-notes="回顾总结，预告下节课。"><blockquote>课堂小结</blockquote></section></div>
+<div id="progress"></div>
+<div id="chrome"></div>
+<div id="help">← → navigate · S notes · F fullscreen · Ctrl+P to PDF</div>
+<div id="notes"></div>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var counter = document.getElementById('chrome');
+  var progress = document.getElementById('progress');
+  var notes = document.getElementById('notes');
+  var current = 0;
+  function show(next) {
+    current = Math.max(0, Math.min(slides.length - 1, next));
+    slides.forEach(function (slide, index) { slide.classList.toggle('current', index === current); });
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+    progress.style.width = ((current + 1) / slides.length * 100) + '%';
+    notes.textContent = slides[current].getAttribute('data-notes') || '';
+    if (location.hash !== '#' + (current + 1)) history.replaceState(null, '', '#' + (current + 1));
+  }
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') { show(current + 1); event.preventDefault(); }
+    else if (event.key === 'ArrowLeft' || event.key === 'PageUp') { show(current - 1); event.preventDefault(); }
+    else if (event.key === 'Home') { show(0); }
+    else if (event.key === 'End') { show(slides.length - 1); }
+    else if (event.key === 's' || event.key === 'S') { document.body.classList.toggle('notes-open'); }
+    else if (event.key === 'f' || event.key === 'F') { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen(); }
+  });
+  document.addEventListener('click', function (event) { show(current + (event.clientX < window.innerWidth / 3 ? -1 : 1)); });
+  show(parseInt((location.hash || '#1').slice(1), 10) - 1 || 0);
+})();</script>
+</body>
+</html>

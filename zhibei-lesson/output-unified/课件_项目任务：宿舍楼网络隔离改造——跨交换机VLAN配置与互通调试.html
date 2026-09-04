@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="und">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>项目任务：宿舍楼网络隔离改造——跨交换机VLAN配置与互通调试</title>
+<style>
+:root {
+  --bg: #fffbf5;
+  --surface: #fdf0e0;
+  --text: #27272a;
+  --muted: #78716c;
+  --accent: #ea580c;
+  --heading-font: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --body-font: Georgia, 'Times New Roman', 'Songti SC', 'SimSun', serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; background: var(--bg); color: var(--text); font-family: var(--body-font); }
+body { overflow: hidden; }
+#stage { position: relative; width: 100vw; height: 100vh; display: grid; place-items: center; }
+.slide {
+  display: none;
+  width: min(100vw, calc(100vh * 16 / 9));
+  height: min(100vh, calc(100vw * 9 / 16));
+  padding: 6vmin 8vmin;
+  flex-direction: column;
+  /* Optically centred: a bottom bias lifts the block above true centre, which
+     keeps a three-bullet slide from floating and a six-bullet one from
+     drifting down. */
+  justify-content: center;
+  padding-bottom: 12vmin;
+  gap: 2.4vmin;
+}
+.slide.current { display: flex; }
+h1, h2 { font-family: var(--heading-font); font-weight: 700; margin: 0; line-height: 1.15; letter-spacing: -0.01em; }
+h1 { font-size: 6.4vmin; }
+h2 { font-size: 5.2vmin; }
+.subtitle { font-size: 3.2vmin; color: var(--muted); margin: 0; }
+.author { font-size: 2.6vmin; color: var(--muted); margin: 0; }
+ul { margin: 0; padding-left: 3.4vmin; display: flex; flex-direction: column; gap: 1.8vmin; }
+li { font-size: 3.4vmin; line-height: 1.4; }
+li::marker { color: var(--accent); }
+code { background: var(--surface); padding: 0.1em 0.35em; border-radius: 0.25em; font-size: 0.9em; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 1.4vmin; align-items: center; min-height: 0; }
+figure img { max-width: 100%; max-height: 62vmin; object-fit: contain; }
+figcaption { font-size: 2.4vmin; color: var(--muted); text-align: center; }
+.slide--bullets h2 { margin-bottom: 1.2vmin; }
+.slide--bullets ul, .slide--bullets .subtitle { max-width: 82%; }
+.slide--title h1 { font-size: 8vmin; }
+.slide--section h2 { font-size: 7vmin; color: var(--accent); }
+.slide--section::after { content: ''; display: block; width: 14vmin; height: 0.7vmin; background: var(--accent); }
+blockquote { margin: 0; font-family: var(--heading-font); font-size: 4.6vmin; line-height: 1.35; border-left: 0.8vmin solid var(--accent); padding-left: 3vmin; }
+.rule { width: 12vmin; height: 0.6vmin; background: var(--accent); }
+#chrome { position: fixed; right: 2.4vmin; bottom: 2vmin; font-size: 2vmin; color: var(--muted); font-family: var(--body-font); }
+#progress { position: fixed; left: 0; bottom: 0; height: 0.5vmin; background: var(--accent); transition: width 160ms ease; }
+#notes {
+  display: none; position: fixed; left: 0; right: 0; bottom: 0; max-height: 34vh; overflow: auto;
+  padding: 2.4vmin 3vmin; background: var(--surface); color: var(--text);
+  font-size: 2.2vmin; line-height: 1.5; white-space: pre-wrap; border-top: 0.3vmin solid var(--accent);
+}
+body.notes-open #notes { display: block; }
+#help { position: fixed; left: 2.4vmin; bottom: 2vmin; font-size: 1.9vmin; color: var(--muted); }
+@media print {
+  @page { size: 297mm 167mm; margin: 0; }
+  body { overflow: visible; }
+  #stage { display: block; width: auto; height: auto; }
+  .slide, .slide.current { display: flex !important; width: 297mm; height: 167mm; break-after: page; }
+  #chrome, #progress, #notes, #help { display: none !important; }
+}</style>
+</head>
+<body>
+<div id="stage"><section class="slide slide--title" data-index="0"><h1>项目任务：宿舍楼网络隔离改造——跨交换机VLAN配置与互通调试</h1><p class="subtitle">计算机网络技术 · 第四章 交换机配置与管理——第3节 VLAN技术 · 张明</p><div class="rule"></div></section>
+<section class="slide slide--title" data-index="1" data-notes="开场页：介绍主题，说明学习目标。"><h1>项目任务：宿舍楼网络隔离改造——跨交换机VLAN配置与互通调试</h1><p class="subtitle">计算机网络技术 · 第四章 交换机配置与管理——第3节 VLAN技术｜2课时（90分钟）</p><div class="rule"></div></section>
+<section class="slide slide--bullets" data-index="2" data-notes="三维目标逐条讲解，强调递进关系。"><h2>学习目标</h2><ul><li>知识：能说出VLAN的概念、作用与802.1Q标签结构；能准确陈述Access端口与Trunk端口的区别及各自适用场景。</li><li>能力：会使用eNSP或真机完成VLAN创建、Access端口划分与Trunk端口配置；能独立完成跨交换机同VLAN互通调试，…</li><li>素养：养成规范操作、先规划后配置的工程习惯；在小组协作中培养沟通表达与安全生产意识。</li></ul></section>
+<section class="slide slide--bullets" data-index="3" data-notes="构建整体认知地图，说明知识点逻辑顺序。"><h2>知识框架</h2><ul><li>知识点1 · 项目任务：宿舍楼网络隔离改造——跨交换机VLAN配置与互通调试</li></ul></section>
+<section class="slide slide--bullets" data-index="4" data-notes="先讲重点再讲难点，说明突破策略。"><h2>重点与难点</h2><ul><li>重点：掌握VLAN创建、Access端口划分与Trunk端口配置的方法，并完成跨交换机同VLAN互通调试。</li><li>难点：理解802.1Q标签在Trunk链路上的加标签与剥标签过程，并据此定位VLAN不通的故障原因。</li></ul></section>
+<section class="slide slide--bullets" data-index="5" data-notes="播放校园网改造案例视频，提出问题：全校学生机处于同一局域网，广播风暴频发、网速慢，如何隔离？引导学生进入网络工程师岗位情境。 意图：以真实岗位情境激发兴趣，让学生带着问题进入学习，自然引出VLAN的必要性。"><h2>情境导入</h2><ul><li>8min · 教师：播放校园网改造案例视频，提出问题：全校学生机处于同一局域网，广播风暴频发、网速慢，如何隔离？引导学生进入网络…</li><li>学生：观看视频，围绕问题分组讨论2分钟，抢答提出初步隔离方案（如分网段、分组）。</li><li>意图：以真实岗位情境激发兴趣，让学生带着问题进入学习，自然引出VLAN的必要性。</li></ul></section>
+<section class="slide slide--bullets" data-index="6" data-notes="结合拓扑图讲解VLAN概念、隔离广播域的作用、802.1Q标签结构，对比Access与Trunk端口的处理方式，随堂提问检验理解。 意图：建立清晰的理论框架，为后续重点操作配置奠定概念基础，避免盲目敲命令。"><h2>新课讲授：VLAN原理</h2><ul><li>15min · 教师：结合拓扑图讲解VLAN概念、隔离广播域的作用、802.1Q标签结构，对比Access与Trunk端口的处理方…</li><li>学生：听讲并记录要点，回答随堂提问，完成学案上的概念对比填空（Access vs Trunk）。</li><li>意图：建立清晰的理论框架，为后续重点操作配置奠定概念基础，避免盲目敲命令。</li></ul></section>
+<section class="slide slide--bullets" data-index="7" data-notes="在eNSP上边讲边演示：创建VLAN、划分Access端口、配置Trunk并放行VLAN的完整流程，同步强调易错点（如漏配allow-pass、端口模式设错）。 意图：通过规范示范降低实训门槛，帮助学生形成标准化的命令输入习惯。"><h2>教师演示</h2><ul><li>12min · 教师：在eNSP上边讲边演示：创建VLAN、划分Access端口、配置Trunk并放行VLAN的完整流程，同步强调…</li><li>学生：近距离观察演示步骤，在任务单上逐条记录关键命令与操作顺序。</li><li>意图：通过规范示范降低实训门槛，帮助学生形成标准化的命令输入习惯。</li></ul></section>
+<section class="slide slide--bullets" data-index="8" data-notes="下发项目任务单，明确目标：两台交换机、两个VLAN，实现同VLAN主机互ping通。巡回指导，纠正命令拼写与模式切换错误，记录典型问题。 意图：在做中学，通过完整任务驱动巩固本课重点配置技能，训练团队分工协作。"><h2>任务实训一：基础配置</h2><ul><li>25min · 教师：下发项目任务单，明确目标：两台交换机、两个VLAN，实现同VLAN主机互ping通。巡回指导，纠正命令拼写与…</li><li>学生：两人一组按任务单完成VLAN创建、端口划分与Trunk配置，验证连通性并截图留存至成果记录表。</li><li>意图：在做中学，通过完整任务驱动巩固本课重点配置技能，训练团队分工协作。</li></ul></section>
+<section class="slide slide--bullets" data-index="9" data-notes="选取实训中收集的典型故障（Trunk未放行VLAN、端口模式错误、VLAN未创建），引导学生先预测再用display vlan、display port vlan定位，剖析802.1Q标签加/剥过程。 意图：以真实故障为载体突破抽象难点，将标签原理可视化，培养先分析后动手的排错思维。"><h2>突破重难点：故障排查演练</h2><ul><li>15min · 教师：选取实训中收集的典型故障（Trunk未放行VLAN、端口模式错误、VLAN未创建），引导学生先预测再用dis…</li><li>学生：各组抽取故障案例复现现象，边排查边在学案上绘制标签转发流程图，推选代表汇报排错思路。</li><li>意图：以真实故障为载体突破抽象难点，将标签原理可视化，培养先分析后动手的排错思维。</li></ul></section>
+<section class="slide slide--bullets" data-index="10" data-notes="边讲边写板书，强调结构。"><h2>板书设计</h2><ul><li>跨交换机VLAN配置与调试</li><li>一、为什么需要VLAN：隔离广播域、提升安全与管理效率</li><li>二、核心命令</li><li>vlan batch 10 20</li><li>port link-type access / trunk</li></ul></section>
+<section class="slide slide--bullets" data-index="11" data-notes="明确提交要求与评价标准。"><h2>作业布置</h2><ul><li>基础题：完成教材P56习题1—5，默写VLAN创建与Trunk配置完整命令并标注每条命令作用。拓展实操题：在eNSP中搭建“3台交换机+财务部与市场部”拓扑，…</li><li>提交：学习平台线上提交</li><li>评价：准确性 + 完整性</li></ul></section>
+<section class="slide slide--quote" data-index="12" data-notes="回顾总结，预告下节课。"><blockquote>课堂小结</blockquote></section></div>
+<div id="progress"></div>
+<div id="chrome"></div>
+<div id="help">← → navigate · S notes · F fullscreen · Ctrl+P to PDF</div>
+<div id="notes"></div>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var counter = document.getElementById('chrome');
+  var progress = document.getElementById('progress');
+  var notes = document.getElementById('notes');
+  var current = 0;
+  function show(next) {
+    current = Math.max(0, Math.min(slides.length - 1, next));
+    slides.forEach(function (slide, index) { slide.classList.toggle('current', index === current); });
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+    progress.style.width = ((current + 1) / slides.length * 100) + '%';
+    notes.textContent = slides[current].getAttribute('data-notes') || '';
+    if (location.hash !== '#' + (current + 1)) history.replaceState(null, '', '#' + (current + 1));
+  }
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') { show(current + 1); event.preventDefault(); }
+    else if (event.key === 'ArrowLeft' || event.key === 'PageUp') { show(current - 1); event.preventDefault(); }
+    else if (event.key === 'Home') { show(0); }
+    else if (event.key === 'End') { show(slides.length - 1); }
+    else if (event.key === 's' || event.key === 'S') { document.body.classList.toggle('notes-open'); }
+    else if (event.key === 'f' || event.key === 'F') { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen(); }
+  });
+  document.addEventListener('click', function (event) { show(current + (event.clientX < window.innerWidth / 3 ? -1 : 1)); });
+  show(parseInt((location.hash || '#1').slice(1), 10) - 1 || 0);
+})();</script>
+</body>
+</html>

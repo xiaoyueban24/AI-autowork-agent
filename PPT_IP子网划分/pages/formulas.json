@@ -1,0 +1,25 @@
+{
+  "components": [
+    {
+      "type": "kpi_cards",
+      "items": [
+        {
+          "value": "2ⁿ",
+          "label": "子网数（n = 借位数）"
+        },
+        {
+          "value": "2ʰ−2",
+          "label": "每子网可用主机数（h = 主机位数）"
+        },
+        {
+          "value": "IP & 掩码",
+          "label": "网络号"
+        },
+        {
+          "value": "网络号 + 主机位全1",
+          "label": "广播地址"
+        }
+      ]
+    }
+  ]
+}

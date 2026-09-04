@@ -1,0 +1,66 @@
+{
+  "version": "1",
+  "filename": "课件_IP地址与子网划分.pptx",
+  "narrative": "training",
+  "theme": "classroom",
+  "meta": {
+    "organization": "计算机网络基础",
+    "date": "2026/9/3"
+  },
+  "pages": [
+    {
+      "id": "cover",
+      "type": "cover",
+      "heading": "IP地址与子网划分",
+      "summary": "计算机网络基础 · 第3章 网络层"
+    },
+    {
+      "id": "goals",
+      "type": "content",
+      "kind": "points",
+      "heading": "学习目标",
+      "summary": "知识·能力·素养三维目标"
+    },
+    {
+      "id": "framework",
+      "type": "content",
+      "kind": "list",
+      "heading": "知识框架",
+      "summary": "本节课的知识点"
+    },
+    {
+      "id": "key-difficult",
+      "type": "content",
+      "kind": "comparison",
+      "heading": "重点与难点",
+      "summary": "教学重难点"
+    },
+    {
+      "id": "process",
+      "type": "content",
+      "kind": "process",
+      "heading": "教学过程",
+      "summary": "五个教学环节"
+    },
+    {
+      "id": "blackboard",
+      "type": "content",
+      "kind": "list",
+      "heading": "板书设计",
+      "summary": "板书框架"
+    },
+    {
+      "id": "homework",
+      "type": "content",
+      "kind": "list",
+      "heading": "作业布置",
+      "summary": "课后巩固"
+    },
+    {
+      "id": "ending",
+      "type": "ending",
+      "heading": "课堂小结",
+      "summary": "回顾 + 作业"
+    }
+  ]
+}

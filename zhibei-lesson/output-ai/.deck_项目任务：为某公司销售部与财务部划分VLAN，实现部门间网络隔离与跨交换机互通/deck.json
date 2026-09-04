@@ -1,0 +1,171 @@
+{
+  "version": "5",
+  "filename": "课件_项目任务：为某公司销售部与财务部划分VLAN，实现部门间网络隔离与跨交换机互通.pptx",
+  "narrative": "training",
+  "theme": {
+    "id": "classroom"
+  },
+  "meta": {
+    "organization": "计算机网络技术",
+    "date": "2024-05-16"
+  },
+  "assets": {
+    "images": {}
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "id": "cover",
+      "heading": "项目任务：为某公司销售部与财务部划分VLAN，实现部门间网络隔离与跨交换机互通",
+      "subheading": "计算机网络技术 · 第四章 交换机的配置与管理",
+      "components": []
+    },
+    {
+      "type": "content",
+      "kind": "points",
+      "id": "goals",
+      "heading": "学习目标",
+      "components": [
+        {
+          "type": "numbered_cards",
+          "items": [
+            {
+              "title": "知识目标",
+              "text": "能说出VLAN的概念、作用与常见划分方式；能描述Access端口与Trunk端口的区别及适用场…"
+            },
+            {
+              "title": "能力目标",
+              "text": "会使用命令行完成VLAN的创建、命名与端口分配；能独立完成跨交换机的Trunk配置并用ping…"
+            },
+            {
+              "title": "素养目标",
+              "text": "养成先备份后配置、规范输入命令的职业习惯；培养小组协作与故障排查中沉着细致的工程素养。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "list",
+      "id": "framework",
+      "heading": "知识框架",
+      "components": [
+        {
+          "type": "bullets",
+          "items": [
+            "知识点1 · IP地址的概念与分类",
+            "知识点2 · 子网掩码的作用",
+            "知识点3 · 子网划分的方法",
+            "知识点4 · CIDR 无类别编址"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "comparison",
+      "id": "key-difficult",
+      "heading": "重点与难点",
+      "components": [
+        {
+          "type": "comparison",
+          "columns": [
+            "教学重点",
+            "教学难点"
+          ],
+          "rows": [
+            {
+              "label": "内容",
+              "cells": [
+                "VLAN的创建、端口划分与Trunk端口的配置及验…",
+                "理解VLAN隔离广播域的原理以及Access与Tr…"
+              ]
+            },
+            {
+              "label": "突破方法",
+              "cells": [
+                "案例演示 + 精讲",
+                "分层练习 + 反馈"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "process",
+      "id": "process",
+      "heading": "教学过程",
+      "components": [
+        {
+          "type": "steps",
+          "items": [
+            {
+              "title": "情境导入",
+              "text": "10min · 播放某公司财务部电脑被销售部终端访问引发数…"
+            },
+            {
+              "title": "新课讲授：VL…",
+              "text": "15min · 结合动画讲解广播域与VLAN的概念及划分方…"
+            },
+            {
+              "title": "教师演示：配置…",
+              "text": "15min · 在Packet Tracer中现场演示创建…"
+            },
+            {
+              "title": "任务实训：分组…",
+              "text": "25min · 下发项目任务工单，巡回指导各组在真机上的操…"
+            },
+            {
+              "title": "突破重难点：故…",
+              "text": "10min · 在部分小组设备上预设典型故障（如端口未划入…"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "list",
+      "id": "blackboard",
+      "heading": "板书设计",
+      "components": [
+        {
+          "type": "bullets",
+          "items": [
+            "VLAN配置实训",
+            "一、VLAN：逻辑隔离广播域；划分…",
+            "二、端口类型：Access（接PC…",
+            "三、配置三步：①vlan 10 创…",
+            "四、验证：show vlan br…"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "list",
+      "id": "homework",
+      "heading": "作业布置",
+      "components": [
+        {
+          "type": "bullets",
+          "items": [
+            "基础题：完成任务工单上VLAN概念与端口类…",
+            "提交：学习平台线上提交",
+            "评价：准确性 + 完整性"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ending",
+      "id": "ending",
+      "heading": "课堂小结",
+      "subheading": "回顾 + 作业",
+      "components": []
+    }
+  ]
+}

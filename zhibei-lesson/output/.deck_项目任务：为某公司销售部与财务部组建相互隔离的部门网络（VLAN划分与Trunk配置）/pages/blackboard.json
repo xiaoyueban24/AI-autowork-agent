@@ -1,0 +1,14 @@
+{
+  "components": [
+    {
+      "type": "bullets",
+      "items": [
+        "项目：企业部门网络隔离（VLAN）",
+        "一、VLAN：逻辑隔离广播域，基于…",
+        "二、两类链路：Access（接PC…",
+        "三、配置四步法：",
+        "1. vlan 10 创建VLAN"
+      ]
+    }
+  ]
+}

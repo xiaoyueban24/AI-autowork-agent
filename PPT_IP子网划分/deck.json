@@ -1,0 +1,482 @@
+{
+  "version": "5",
+  "filename": "IP地址与子网划分.pptx",
+  "narrative": "training",
+  "theme": {
+    "id": "classroom"
+  },
+  "meta": {
+    "organization": "计算机网络基础 · 课程课件",
+    "date": "2026-09"
+  },
+  "assets": {
+    "images": {}
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "id": "cover",
+      "heading": "IP地址与子网划分",
+      "subheading": "从32位地址结构到CIDR子网划分",
+      "components": []
+    },
+    {
+      "type": "content",
+      "kind": "points",
+      "id": "goals",
+      "heading": "学习目标",
+      "components": [
+        {
+          "type": "bullets",
+          "items": [
+            "理解 IP 地址的 32 位二进制结构",
+            "掌握「网络号 + 主机号」的组成",
+            "会用子网掩码的「按位与」判定网络号",
+            "理解 CIDR 无分类编址与 /n 表示法",
+            "能独立完成子网划分与各类计算"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "hierarchy",
+      "id": "ip-structure",
+      "heading": "IP地址的组成结构",
+      "components": [
+        {
+          "type": "architecture",
+          "layers": [
+            {
+              "title": "IP 地址（32 位 / 4 字节）",
+              "items": [
+                "11000000 10101000 00000001 00000110"
+              ]
+            },
+            {
+              "title": "网络号 Net-ID",
+              "items": [
+                "标识主机所属的网络",
+                "同一网络内的主机网络号相同"
+              ]
+            },
+            {
+              "title": "主机号 Host-ID",
+              "items": [
+                "标识网络内的具体主机",
+                "同一网络内必须唯一"
+              ]
+            }
+          ],
+          "direction": "top_down"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "points",
+      "id": "what-is-ip",
+      "heading": "什么是 IP 地址",
+      "components": [
+        {
+          "type": "bullets",
+          "items": [
+            "给每台联网主机分配的 32 位逻辑地址",
+            "等于 4 字节，通常写成点分十进制",
+            "例：11000000.10101000.00000001.00000110",
+            "即 192.168.1.6，分网络号与主机号两部分"
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "网络地址 = 主机号全 0；广播地址 = 主机号全 1，均不可分配。"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "points",
+      "id": "what-is-mask",
+      "heading": "什么是子网掩码",
+      "components": [
+        {
+          "type": "bullets",
+          "items": [
+            "与 IP 地址同格式的 32 位数字",
+            "由连续的 1 和连续的 0 组成",
+            "「1」对应网络位，「0」对应主机位",
+            "与 IP 做「按位与」即得网络号",
+            "例：/18 = 255.255.192.0"
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "按位与：1&1=1，其余为 0。掩码必须 1 在前、0 在后。"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "list",
+      "id": "mask-role",
+      "heading": "子网掩码的作用",
+      "components": [
+        {
+          "type": "row_cards",
+          "items": [
+            {
+              "title": "判定网络号",
+              "text": "IP 地址 & 子网掩码"
+            },
+            {
+              "title": "判断同网段",
+              "text": "网络号相同即可直连"
+            },
+            {
+              "title": "划分子网",
+              "text": "借主机位给网络位"
+            },
+            {
+              "title": "缩小广播域",
+              "text": "提升效率与安全"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "comparison",
+      "id": "class-vs-cidr",
+      "heading": "传统分类编址 vs CIDR",
+      "components": [
+        {
+          "type": "comparison",
+          "columns": [
+            "传统分类编址（有类）",
+            "CIDR 无分类编址（无类）"
+          ],
+          "rows": [
+            {
+              "label": "划分方式",
+              "cells": [
+                "按 A/B/C/D/E 类固定划分",
+                "用子网掩码自由划分，不分类"
+              ]
+            },
+            {
+              "label": "网络号边界",
+              "cells": [
+                "由类别决定（8/16/24 位）",
+                "由掩码长度 /n 任意决定"
+              ]
+            },
+            {
+              "label": "表示法",
+              "cells": [
+                "默认掩码（如 255.255.255.0）",
+                "IP/前缀（如 192.168.1.0/24）"
+              ]
+            },
+            {
+              "label": "地址利用率",
+              "cells": [
+                "低，易造成浪费",
+                "高，按需分配"
+              ]
+            },
+            {
+              "label": "现状",
+              "cells": [
+                "已被淘汰",
+                "当前 Internet 标准"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "process",
+      "id": "cidr-notation",
+      "heading": "CIDR 表示法：从 /n 到掩码",
+      "components": [
+        {
+          "type": "steps",
+          "items": [
+            {
+              "title": "理解 /n 的含义",
+              "text": "/18 表示 32 位中高 18 位为 1"
+            },
+            {
+              "title": "写出二进制掩码",
+              "text": "11111111.11111111.11000000.00000000"
+            },
+            {
+              "title": "每 8 位转十进制",
+              "text": "11111111=255，11000000=192，其余为 0"
+            },
+            {
+              "title": "得到点分十进制",
+              "text": "255.255.192.0，即 /18"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "process",
+      "id": "calc-steps",
+      "heading": "计算网络号 / 主机号 / 广播地址",
+      "components": [
+        {
+          "type": "steps",
+          "items": [
+            {
+              "title": "网络号",
+              "text": "IP 地址 与 子网掩码 按位与（AND）"
+            },
+            {
+              "title": "主机号",
+              "text": "IP 地址 与 掩码反码 按位与"
+            },
+            {
+              "title": "广播地址",
+              "text": "把网络号的主机位全部置 1"
+            },
+            {
+              "title": "可用地址范围",
+              "text": "网络号 +1 ～ 广播地址 -1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "data",
+      "id": "example1",
+      "heading": "例题一：172.31.128.255 / 18",
+      "components": [
+        {
+          "type": "data_table",
+          "columns": [
+            {
+              "key": "item",
+              "label": "项目"
+            },
+            {
+              "key": "calc",
+              "label": "计算过程"
+            },
+            {
+              "key": "result",
+              "label": "结果"
+            }
+          ],
+          "rows": [
+            {
+              "cells": {
+                "item": "IP 地址",
+                "calc": "10101100.00011111.10000000.11111111",
+                "result": "172.31.128.255"
+              }
+            },
+            {
+              "cells": {
+                "item": "子网掩码",
+                "calc": "11111111.11111111.11000000.00000000",
+                "result": "255.255.192.0（/18）"
+              }
+            },
+            {
+              "cells": {
+                "item": "网络号",
+                "calc": "IP & 掩码",
+                "result": "172.31.128.0"
+              }
+            },
+            {
+              "cells": {
+                "item": "主机号",
+                "calc": "IP & 掩码反码",
+                "result": "0.0.0.255"
+              }
+            },
+            {
+              "cells": {
+                "item": "广播地址",
+                "calc": "网络号 + 主机位全 1",
+                "result": "172.31.191.255"
+              }
+            },
+            {
+              "cells": {
+                "item": "可用范围",
+                "calc": "网络号+1 ～ 广播-1",
+                "result": "172.31.128.1 ~ 172.31.191.254"
+              }
+            },
+            {
+              "cells": {
+                "item": "子网数",
+                "calc": "借 2 位 → 2²",
+                "result": "4 个"
+              },
+              "emphasis": "highlight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "process",
+      "id": "subnet-method",
+      "heading": "子网划分的方法",
+      "components": [
+        {
+          "type": "numbered_cards",
+          "items": [
+            {
+              "title": "确定需求",
+              "text": "需要多少个子网、每个子网多少台主机"
+            },
+            {
+              "title": "计算借位数 n",
+              "text": "2ⁿ ≥ 子网数，从主机位借 n 位"
+            },
+            {
+              "title": "写出新掩码",
+              "text": "原掩码向后延 n 位，如 /24 → /26"
+            },
+            {
+              "title": "计算子网范围",
+              "text": "逐个算出网络号、广播地址与可用主机"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "data",
+      "id": "example2",
+      "heading": "例题二：192.168.1.0/24 划为 /26",
+      "components": [
+        {
+          "type": "data_table",
+          "columns": [
+            {
+              "key": "subnet",
+              "label": "子网"
+            },
+            {
+              "key": "net",
+              "label": "网络号"
+            },
+            {
+              "key": "broadcast",
+              "label": "广播地址"
+            },
+            {
+              "key": "range",
+              "label": "可用主机范围"
+            }
+          ],
+          "rows": [
+            {
+              "cells": {
+                "subnet": "第 1 个子网",
+                "net": "192.168.1.0",
+                "broadcast": "192.168.1.63",
+                "range": "192.168.1.1 ~ .62"
+              }
+            },
+            {
+              "cells": {
+                "subnet": "第 2 个子网",
+                "net": "192.168.1.64",
+                "broadcast": "192.168.1.127",
+                "range": "192.168.1.65 ~ .126"
+              }
+            },
+            {
+              "cells": {
+                "subnet": "第 3 个子网",
+                "net": "192.168.1.128",
+                "broadcast": "192.168.1.191",
+                "range": "192.168.1.129 ~ .190"
+              }
+            },
+            {
+              "cells": {
+                "subnet": "第 4 个子网",
+                "net": "192.168.1.192",
+                "broadcast": "192.168.1.255",
+                "range": "192.168.1.193 ~ .254"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "list",
+      "id": "formulas",
+      "heading": "关键公式速查",
+      "components": [
+        {
+          "type": "kpi_cards",
+          "items": [
+            {
+              "value": "2ⁿ",
+              "label": "子网数（n = 借位数）"
+            },
+            {
+              "value": "2ʰ−2",
+              "label": "每子网可用主机数（h = 主机位数）"
+            },
+            {
+              "value": "IP & 掩码",
+              "label": "网络号"
+            },
+            {
+              "value": "网络号 + 主机位全1",
+              "label": "广播地址"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kind": "points",
+      "id": "pitfalls",
+      "heading": "常见误区与易错点",
+      "components": [
+        {
+          "type": "bullets",
+          "items": [
+            "可用主机数要减 2",
+            "借位越多，每子网容量越小",
+            "网络号 ≠ IP 地址",
+            "掩码必须连续，不能 101 间隔"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ending",
+      "id": "ending",
+      "heading": "总结与课后练习",
+      "subheading": "掌握四大核心 · 课后：把 172.16.0.0/16 划分为 8 个子网",
+      "components": []
+    }
+  ]
+}

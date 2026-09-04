@@ -1,0 +1,27 @@
+{
+  "components": [
+    {
+      "type": "comparison",
+      "columns": [
+        "教学重点",
+        "教学难点"
+      ],
+      "rows": [
+        {
+          "label": "内容",
+          "cells": [
+            "VLAN的创建、端口划分与Trunk端口的配置及验…",
+            "理解VLAN隔离广播域的原理以及Access与Tr…"
+          ]
+        },
+        {
+          "label": "突破方法",
+          "cells": [
+            "案例演示 + 精讲",
+            "分层练习 + 反馈"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智备教案 · AI 一键生成教案与课件</title>
+<style>
+  :root { --dark:#1F3864; --accent:#2E74B5; --light:#EDF2FA; --ok:#1a7f37; --err:#c0392b; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Microsoft YaHei","微软雅黑",sans-serif; background:#f4f6fb; color:#333; }
+  header { background:linear-gradient(135deg,#1F3864,#2E74B5); color:#fff; padding:22px 28px; }
+  header h1 { font-size:24px; font-weight:700; }
+  header p { margin-top:6px; font-size:13px; opacity:.85; }
+  .wrap { max-width:920px; margin:24px auto; padding:0 16px; }
+  .card { background:#fff; border-radius:10px; padding:22px 24px; margin-bottom:18px; box-shadow:0 1px 4px rgba(31,56,100,.08); }
+  .card h2 { font-size:16px; color:var(--dark); border-left:4px solid var(--accent); padding-left:10px; margin-bottom:16px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .full { grid-column:1 / -1; }
+  label { display:block; font-size:13px; color:#555; margin-bottom:5px; }
+  label em { color:var(--accent); font-style:normal; }
+  input, textarea, select { width:100%; padding:9px 11px; border:1px solid #d7dee8; border-radius:6px; font-size:14px; font-family:inherit; background:#fff; }
+  input:focus, textarea:focus, select:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(46,116,181,.12); }
+  textarea { resize:vertical; }
+  .hint { font-size:12px; color:#999; margin-top:4px; }
+  .checkrow { display:flex; align-items:center; gap:8px; margin-top:6px; }
+  .checkrow input { width:auto; }
+  .checkrow label { margin:0; }
+  button { width:100%; padding:13px; background:linear-gradient(135deg,#2E74B5,#1F3864); color:#fff; border:none; border-radius:8px; font-size:16px; font-weight:700; cursor:pointer; letter-spacing:2px; }
+  button:disabled { opacity:.6; cursor:not-allowed; }
+  #result { margin-top:16px; display:none; }
+  #result.show { display:block; }
+  .dl { display:inline-block; margin:6px 10px 0 0; padding:9px 16px; background:#fff; border:1px solid var(--accent); color:var(--accent); border-radius:6px; text-decoration:none; font-weight:600; }
+  .dl:hover { background:var(--accent); color:#fff; }
+  .meta { margin-top:14px; padding:14px; border-radius:8px; background:var(--light); font-size:13px; }
+  .meta h3 { font-size:14px; color:var(--dark); margin:10px 0 6px; }
+  .meta h3:first-child { margin-top:0; }
+  .meta .think { background:#fff; border-left:3px solid var(--accent); padding:8px 10px; border-radius:4px; white-space:pre-wrap; max-height:200px; overflow:auto; color:#444; line-height:1.6; }
+  .meta .src { display:block; color:var(--accent); text-decoration:none; margin:3px 0; word-break:break-all; }
+  .badge { display:inline-block; padding:2px 8px; background:var(--accent); color:#fff; border-radius:10px; font-size:12px; margin-right:6px; }
+  footer { text-align:center; color:#999; font-size:12px; padding:20px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>智备教案 · AI 一键生成教案与课件</h1>
+  <p>真实大模型多轮生成：联网检索 → 初稿 → 自我评审 → 优化定稿（保留模型思考过程）</p>
+</header>
+<div class="wrap">
+  <form id="form">
+    <div class="card">
+      <h2>课程信息</h2>
+      <div class="grid">
+        <div><label>课程名称 <em>*</em></label><input id="course" value="计算机网络基础"></div>
+        <div><label>章节</label><input id="chapter" value="第3章 网络层"></div>
+        <div class="full"><label>主题 <em>*</em></label><input id="topic" value="IP地址与子网划分"></div>
+        <div><label>授课对象</label><input id="audience" value="2024级计算机应用技术专业学生"></div>
+        <div><label>课时</label><input id="hours" value="2 课时（90 分钟）"></div>
+        <div><label>授课教师</label><input id="teacher" placeholder="你的姓名"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>知识点（每行一个，AI 联网检索与生成都会参考）</h2>
+      <textarea id="knowledgePoints" rows="4">IP地址的概念与分类
+子网掩码的作用
+子网划分的方法
+CIDR 无类别编址</textarea>
+    </div>
+
+    <div class="card">
+      <h2>教学目标与重难点（可留空，AI 会自动补全）</h2>
+      <div class="grid">
+        <div class="full"><label>知识目标</label><input id="goalKnowledge" placeholder="留空则由 AI 生成"></div>
+        <div class="full"><label>能力目标</label><input id="goalAbility"></div>
+        <div class="full"><label>素养目标</label><input id="goalQuality"></div>
+        <div><label>教学重点</label><input id="keyPoints"></div>
+        <div><label>教学难点</label><input id="difficulties"></div>
+        <div class="full"><label>教学准备</label><input id="preparation"></div>
+        <div class="full"><label>作业布置</label><input id="homework"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>AI 模型（真实大模型多轮生成）</h2>
+      <div class="grid">
+        <div><label>服务商</label>
+          <select id="aiProvider">
+            <option value="abc" selected>GLM 中转站（校内可用·推荐）</option>
+            <option value="zhipu">智谱 GLM 官方</option>
+            <option value="deepseek">DeepSeek</option>
+            <option value="openai">OpenAI 兼容（自定义）</option>
+          </select>
+        </div>
+        <div><label>模型</label>
+          <select id="aiModel">
+            <option value="glm-5.3" selected>glm-5.3（旗舰·深度思考）</option>
+            <option value="glm-5.3-flash">glm-5.3-flash（快速）</option>
+            <option value="glm-5.2">glm-5.2</option>
+          </select>
+        </div>
+        <div class="full"><label>API Key <em>*</em></label><input id="aiApiKey" type="password" placeholder="填了才走 AI 多轮生成；留空则用离线模板兜底"></div>
+        <div class="full"><label>接口地址（OpenAI 兼容时必填，其余留空）</label><input id="aiBaseUrl" placeholder="如 https://open.bigmodel.cn/api/paas/v4"></div>
+        <div><label>思考强度（GLM）</label>
+          <select id="aiReasoningEffort">
+            <option value="max" selected>max（深度推理）</option>
+            <option value="high">high（增强推理）</option>
+            <option value="low">low（轻量推理）</option>
+          </select>
+        </div>
+        <div class="checkrow"><input type="checkbox" id="aiWebSearch" checked><label for="aiWebSearch">联网搜索最新资料（需智谱官方通道；中转站自动改用模型知识库检索）</label></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <button id="btn" type="submit">一 键 生 成</button>
+      <div id="result"></div>
+    </div>
+  </form>
+</div>
+<footer>智备教案 · 浙工院「电信杯」AI 应用大赛参赛作品</footer>
+
+<script>
+// 检测 file:// 直开
+if (location.protocol === 'file:') {
+  document.addEventListener('DOMContentLoaded', function(){
+    var r = document.getElementById('result');
+    r.classList.add('show');
+    r.innerHTML = '<p style="color:var(--err);font-weight:600">⚠ 检测到你直接打开了 HTML 文件（file:// 协议）。请运行 node server.js 启动服务，再用浏览器访问 http://localhost:3000。</p>';
+  });
+}
+
+// 服务商切换时联动模型列表
+var MODELS = {
+  abc:      [['glm-5.3','glm-5.3（旗舰·深度思考）'],['glm-5.3-flash','glm-5.3-flash（快速）'],['glm-5.2','glm-5.2'],['deepseek-v4-pro','deepseek-v4-pro'],['deepseek-v4-flash','deepseek-v4-flash']],
+  zhipu:    [['glm-5.3','glm-5.3（旗舰·深度思考）'],['glm-5.3-flash','glm-5.3-flash（快速）'],['glm-5.2','glm-5.2']],
+  deepseek: [['deepseek-reasoner','deepseek-reasoner（深度推理）'],['deepseek-chat','deepseek-chat（通用）']],
+  openai:   [['','自定义（下方填接口地址+模型）']]
+};
+function onProviderChange(){
+  var p = document.getElementById('aiProvider').value;
+  var sel = document.getElementById('aiModel');
+  sel.innerHTML = '';
+  MODELS[p].forEach(function(m){
+    var o = document.createElement('option');
+    o.value = m[0]; o.textContent = m[1];
+    if (m[0] === 'glm-5.3' && p === 'zhipu') o.selected = true;
+    sel.appendChild(o);
+  });
+  document.getElementById('aiReasoningEffort').disabled = (p !== 'zhipu' && p !== 'abc');
+}
+document.getElementById('aiProvider').addEventListener('change', onProviderChange);
+onProviderChange();
+
+function val(id){ return document.getElementById(id).value; }
+function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+document.getElementById('form').addEventListener('submit', async function(e){
+  e.preventDefault();
+  var btn = document.getElementById('btn');
+  var result = document.getElementById('result');
+  btn.disabled = true; btn.textContent = '正在多轮生成，请稍候…（联网检索→初稿→评审→定稿）';
+  result.classList.remove('show');
+  var data = {
+    course: val('course'), chapter: val('chapter'), topic: val('topic'),
+    audience: val('audience'), hours: val('hours'), teacher: val('teacher'),
+    goalKnowledge: val('goalKnowledge'), goalAbility: val('goalAbility'), goalQuality: val('goalQuality'),
+    keyPoints: val('keyPoints'), difficulties: val('difficulties'),
+    preparation: val('preparation'), homework: val('homework'),
+    aiProvider: val('aiProvider'), aiModel: val('aiModel'), aiApiKey: val('aiApiKey'),
+    aiBaseUrl: val('aiBaseUrl'), aiReasoningEffort: val('aiReasoningEffort'),
+    aiWebSearch: document.getElementById('aiWebSearch').checked,
+    knowledgePoints: document.getElementById('knowledgePoints').value.split('\n').map(function(s){ return s.trim(); }).filter(Boolean)
+  };
+  try {
+    var res = await fetch('/api/generate', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
+    var j = await res.json();
+    if (j.ok) {
+      var html = '<p style="color:var(--ok);font-weight:600;font-size:15px">生成成功：' + esc(j.title) + '</p>' +
+        '<a class="dl" href="' + j.docx + '">下载 Word 教案</a>' +
+        '<a class="dl" href="' + j.pptx + '">下载 PPT 课件</a>';
+      if (j.meta) {
+        html += '<div class="meta">';
+        html += '<span class="badge">模型 ' + esc(j.meta.model) + '</span>';
+        html += '<span class="badge">思考 ' + esc(j.meta.reasoningEffort) + '</span>';
+        html += '<span class="badge">联网 ' + (j.meta.webSearch ? '开' : '关') + '</span>';
+        if (j.meta.sources && j.meta.sources.length) {
+          html += '<h3>联网参考来源（' + j.meta.sources.length + '）</h3>';
+          j.meta.sources.slice(0, 6).forEach(function(s){
+            html += '<a class="src" href="' + esc(s.url) + '" target="_blank">' + esc(s.title) + '</a>';
+          });
+        }
+        if (j.meta.review) {
+          html += '<h3>AI 自我评审意见</h3><div class="think">' + esc(j.meta.review) + '</div>';
+        }
+        if (j.meta.reasoningFinal) {
+          html += '<h3>模型思考过程（定稿轮，节选）</h3><div class="think">' + esc(j.meta.reasoningFinal.slice(0, 1500)) + '</div>';
+        }
+        html += '</div>';
+      }
+      result.innerHTML = html;
+    } else {
+      result.innerHTML = '<p style="color:var(--err)">生成失败：' + esc(j.error) + '</p>';
+    }
+  } catch (err) {
+    var msg = (err && err.message === 'Failed to fetch')
+      ? '⚠ 无法连接服务器。请先运行 node server.js 启动服务，再访问 http://localhost:3000（不要直接双击打开本 HTML 文件）。'
+      : ('请求失败：' + (err && err.message));
+    result.innerHTML = '<p style="color:var(--err)">' + msg + '</p>';
+  }
+  result.classList.add('show');
+  btn.disabled = false; btn.textContent = '一 键 生 成';
+});
+</script>
+</body>
+</html>

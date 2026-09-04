@@ -1,0 +1,115 @@
+{
+  "version": "1",
+  "filename": "IP地址与子网划分.pptx",
+  "narrative": "training",
+  "theme": "classroom",
+  "meta": {
+    "organization": "计算机网络基础 · 课程课件",
+    "date": "2026-09"
+  },
+  "pages": [
+    {
+      "id": "cover",
+      "type": "cover",
+      "heading": "IP地址与子网划分",
+      "summary": "从32位地址结构到CIDR子网划分"
+    },
+    {
+      "id": "goals",
+      "type": "content",
+      "kind": "points",
+      "heading": "学习目标",
+      "summary": "四大核心能力目标"
+    },
+    {
+      "id": "ip-structure",
+      "type": "content",
+      "kind": "hierarchy",
+      "heading": "IP地址的组成结构",
+      "summary": "网络号+主机号的分层结构"
+    },
+    {
+      "id": "what-is-ip",
+      "type": "content",
+      "kind": "points",
+      "heading": "什么是 IP 地址",
+      "summary": "32位逻辑地址的基本概念"
+    },
+    {
+      "id": "what-is-mask",
+      "type": "content",
+      "kind": "points",
+      "heading": "什么是子网掩码",
+      "summary": "32位掩码与按位与运算"
+    },
+    {
+      "id": "mask-role",
+      "type": "content",
+      "kind": "list",
+      "heading": "子网掩码的作用",
+      "summary": "四大核心作用"
+    },
+    {
+      "id": "class-vs-cidr",
+      "type": "content",
+      "kind": "comparison",
+      "heading": "传统分类编址 vs CIDR",
+      "summary": "有类与无类编址对比"
+    },
+    {
+      "id": "cidr-notation",
+      "type": "content",
+      "kind": "process",
+      "heading": "CIDR 表示法：从 /n 到掩码",
+      "summary": "/18 转 255.255.192.0 的四步"
+    },
+    {
+      "id": "calc-steps",
+      "type": "content",
+      "kind": "process",
+      "heading": "计算网络号 / 主机号 / 广播地址",
+      "summary": "三类核心计算的四步流程"
+    },
+    {
+      "id": "example1",
+      "type": "content",
+      "kind": "data",
+      "heading": "例题一：172.31.128.255 / 18",
+      "summary": "完整计算演示"
+    },
+    {
+      "id": "subnet-method",
+      "type": "content",
+      "kind": "process",
+      "heading": "子网划分的方法",
+      "summary": "借位的四个步骤"
+    },
+    {
+      "id": "example2",
+      "type": "content",
+      "kind": "data",
+      "heading": "例题二：192.168.1.0/24 划为 /26",
+      "summary": "四子网划分结果表"
+    },
+    {
+      "id": "formulas",
+      "type": "content",
+      "kind": "list",
+      "heading": "关键公式速查",
+      "summary": "四组核心公式"
+    },
+    {
+      "id": "pitfalls",
+      "type": "content",
+      "kind": "points",
+      "heading": "常见误区与易错点",
+      "summary": "四个高频错误"
+    },
+    {
+      "id": "ending",
+      "type": "ending",
+      "heading": "总结与课后练习",
+      "summary": "掌握四大核心 · 课后：把 172.16.0.0/16 划分为 8 个子网"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "components": [
+    {
+      "type": "numbered_cards",
+      "items": [
+        {
+          "title": "知识目标",
+          "text": "能说出VLAN的概念、作用与划分方式，能准确表述Access链路与Trunk链路的区别及IEE…"
+        },
+        {
+          "title": "能力目标",
+          "text": "会在交换机上独立完成VLAN创建、端口划分与Trunk配置，能利用ping和show命令验证部…"
+        },
+        {
+          "title": "素养目标",
+          "text": "养成规范操作、先备份后配置的工程习惯，树立网络信息安全意识与团队协作、精益求精的职业精神。"
+        }
+      ]
+    }
+  ]
+}
