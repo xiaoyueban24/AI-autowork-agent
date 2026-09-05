@@ -37,6 +37,14 @@
   .meta .think { background:#fff; border-left:3px solid var(--accent); padding:8px 10px; border-radius:4px; white-space:pre-wrap; max-height:200px; overflow:auto; color:#444; line-height:1.6; }
   .meta .src { display:block; color:var(--accent); text-decoration:none; margin:3px 0; word-break:break-all; }
   .badge { display:inline-block; padding:2px 8px; background:var(--accent); color:#fff; border-radius:10px; font-size:12px; margin-right:6px; }
+  /* 主题选择 */
+  .themeRow { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+  .themeOpt { border:2px solid #e0e6ef; border-radius:10px; padding:10px 6px; text-align:center; cursor:pointer; transition:.15s; background:#fff; }
+  .themeOpt:hover { border-color:#b8c6da; }
+  .themeOpt.on { border-color:var(--accent); box-shadow:0 0 0 3px rgba(46,116,181,.15); }
+  .themeSwatch { height:34px; border-radius:6px; margin-bottom:6px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; }
+  .themeName { font-size:12px; font-weight:600; color:#333; }
+  .themeDesc { font-size:10px; color:#999; margin-top:2px; line-height:1.3; }
   footer { text-align:center; color:#999; font-size:12px; padding:20px; }
 </style>
 </head>
@@ -48,35 +56,86 @@
 <div class="wrap">
   <form id="form">
     <div class="card">
+      <h2>快速模板（5 专业 + 自定义）</h2>
+      <div class="themeRow" id="majorRow" style="grid-template-columns:repeat(6,1fr)">
+        <div class="themeOpt on" data-major="ai" style="border-color:var(--accent)"><div class="themeSwatch" style="background:linear-gradient(135deg,#1F3864,#2E74B5);color:#fff">AI</div><div class="themeName">AI 基础（自定义）</div><div class="themeDesc">md 导入 · 人工智能</div></div>
+        <div class="themeOpt" data-major="cs"><div class="themeSwatch" style="background:#ffffff;color:#2563eb;border:1px solid #e0e6ef">CS</div><div class="themeName">计算机应用</div><div class="themeDesc">IP地址与子网划分</div></div>
+        <div class="themeOpt" data-major="me"><div class="themeSwatch" style="background:#faf8f3;color:#9a3412;border:1px solid #e0e6ef">ME</div><div class="themeName">机电一体化</div><div class="themeDesc">PLC正反转控制</div></div>
+        <div class="themeOpt" data-major="ac"><div class="themeSwatch" style="background:#0f172a;color:#38bdf8">AC</div><div class="themeName">大数据会计</div><div class="themeDesc">借贷记账法</div></div>
+        <div class="themeOpt" data-major="arch"><div class="themeSwatch" style="background:#f8fafc;color:#475569;border:1px solid #e0e6ef">AR</div><div class="themeName">建筑工程</div><div class="themeDesc">建筑平面图识读</div></div>
+        <div class="themeOpt" data-major="ec"><div class="themeSwatch" style="background:#fffbf5;color:#ea580c;border:1px solid #e0e6ef">EC</div><div class="themeName">电子商务</div><div class="themeDesc">短视频营销策划</div></div>
+      </div>
+      <p class="hint" style="margin-top:8px">点一个模板自动填充课程信息，也可直接在下方手动改。</p>
+    </div>
+    <div class="card">
       <h2>课程信息</h2>
       <div class="grid">
-        <div><label>课程名称 <em>*</em></label><input id="course" value="计算机网络基础"></div>
-        <div><label>章节</label><input id="chapter" value="第3章 网络层"></div>
-        <div class="full"><label>主题 <em>*</em></label><input id="topic" value="IP地址与子网划分"></div>
-        <div><label>授课对象</label><input id="audience" value="2024级计算机应用技术专业学生"></div>
+        <div><label>课程名称 <em>*</em></label><input id="course" value="人工智能基础与应用"></div>
+        <div><label>章节</label><input id="chapter" value="第1章 人工智能导论"></div>
+        <div class="full"><label>主题 <em>*</em></label><input id="topic" value="人工智能技术概述与大模型应用"></div>
+        <div><label>授课对象</label><input id="audience" value="2024级计算机应用技术专业"></div>
         <div><label>课时</label><input id="hours" value="2 课时（90 分钟）"></div>
         <div><label>授课教师</label><input id="teacher" placeholder="你的姓名"></div>
       </div>
     </div>
 
     <div class="card">
+      <h2>PPT 课件主题（5 种类型）</h2>
+      <div class="themeRow" id="themeRow">
+        <div class="themeOpt on" data-theme="plain"><div class="themeSwatch" style="background:#ffffff;color:#2563eb;border:1px solid #e0e6ef">Aa</div><div class="themeName">plain</div><div class="themeDesc">平实白底 · 默认</div></div>
+        <div class="themeOpt" data-theme="ink"><div class="themeSwatch" style="background:#faf8f3;color:#9a3412;border:1px solid #e0e6ef">Aa</div><div class="themeName">ink</div><div class="themeDesc">暖纸墨色 · 答辩</div></div>
+        <div class="themeOpt" data-theme="midnight"><div class="themeSwatch" style="background:#0f172a;color:#38bdf8">Aa</div><div class="themeName">midnight</div><div class="themeDesc">深夜蓝 · 亮室</div></div>
+        <div class="themeOpt" data-theme="slate"><div class="themeSwatch" style="background:#f8fafc;color:#475569;border:1px solid #e0e6ef">Aa</div><div class="themeName">slate</div><div class="themeDesc">中性灰 · 图表</div></div>
+        <div class="themeOpt" data-theme="sunrise"><div class="themeSwatch" style="background:#fffbf5;color:#ea580c;border:1px solid #e0e6ef">Aa</div><div class="themeName">sunrise</div><div class="themeDesc">晨光暖调 · 说服</div></div>
+      </div>
+    </div>
+
+    <div class="card">
       <h2>知识点（每行一个，AI 联网检索与生成都会参考）</h2>
-      <textarea id="knowledgePoints" rows="4">IP地址的概念与分类
-子网掩码的作用
-子网划分的方法
-CIDR 无类别编址</textarea>
+      <textarea id="knowledgePoints" rows="8">人工智能的定义与本质
+人工智能发展历程（三次浪潮）
+人工智能核心技术分支（机器学习、深度学习、自然语言处理、计算机视觉）
+大语言模型（LLM）的基本原理（Transformer架构、预训练与微调）
+AIGC（AI生成内容）的概念与应用
+专用人工智能（ANI）与通用人工智能（AGI）的区别
+我国人工智能产业现状与"人工智能+"国家战略
+AI伦理、安全与治理基本准则</textarea>
     </div>
 
     <div class="card">
       <h2>教学目标与重难点（可留空，AI 会自动补全）</h2>
       <div class="grid">
-        <div class="full"><label>知识目标</label><input id="goalKnowledge" placeholder="留空则由 AI 生成"></div>
-        <div class="full"><label>能力目标</label><input id="goalAbility"></div>
-        <div class="full"><label>素养目标</label><input id="goalQuality"></div>
-        <div><label>教学重点</label><input id="keyPoints"></div>
-        <div><label>教学难点</label><input id="difficulties"></div>
-        <div class="full"><label>教学准备</label><input id="preparation"></div>
-        <div class="full"><label>作业布置</label><input id="homework"></div>
+        <div class="full"><label>知识目标</label><textarea id="goalKnowledge" rows="4">1. 掌握人工智能的定义、研究范畴及其与计算机程序的本质区别（数据驱动 vs 规则驱动）。
+2. 了解人工智能从1956年达特茅斯会议到当代大模型的关键发展历程。
+3. 熟悉机器学习、深度学习、NLP、计算机视觉、生成式AI等主要技术分支的基本原理。
+4. 理解大语言模型的核心机制（Transformer、自注意力、预训练+微调）及代表性模型（如DeepSeek、GPT系列）。
+5. 区分ANI与AGI，明确当前AI仍处于弱人工智能阶段，但发展迅速。
+6. 了解AIGC在文本、图像、音频、视频等领域的典型应用。
+7. 认识我国AI产业规模、政策导向及2026年最新趋势（AI智能体、多模态、具身智能）。</textarea></div>
+        <div class="full"><label>能力目标</label><textarea id="goalAbility" rows="4">1. 能够熟练使用主流AI工具（如对话大模型、AI绘图/编程助手）解决实际问题。
+2. 具备利用AI进行信息检索、知识整理、内容创作和数据分析的能力。
+3. 能根据任务需求初步判断适用的AI技术类型（分类、生成、预测等）。
+4. 培养数据驱动的思维方式，理解"数据→算法→模型→应用"的工程化流程。
+5. 具备持续跟踪AI新动态、自主学习新工具的能力。</textarea></div>
+        <div class="full"><label>素养目标</label><textarea id="goalQuality" rows="4">1. 树立正确的AI伦理观，关注算法公平、隐私保护、透明性与可问责性。
+2. 增强科技向善的社会责任感，理解AI安全治理与创新发展并重。
+3. 提升对国家"人工智能+"战略的认同感，增强技术自信与使命感。
+4. 培养批判性思维，辩证看待AI带来的效率提升与潜在风险。
+5. 养成终身学习习惯，适应AI技术快速迭代的特性。</textarea></div>
+        <div class="full"><label>教学重点</label><textarea id="keyPoints" rows="3">1. 人工智能的核心定义、本质及与传统程序的区别。
+2. AI发展史上的里程碑事件与代表性技术突破。
+3. 主要技术分支（ML、DL、NLP、CV、AIGC）的基本概念及应用场景。
+4. 大模型的工作原理、优势与局限性。
+5. 我国AI产业政策、典型应用与未来趋势。</textarea></div>
+        <div class="full"><label>教学难点</label><textarea id="difficulties" rows="3">1. 机器学习与深度学习的底层逻辑（损失函数、梯度下降、反向传播）如何通俗化讲解。
+2. Transformer架构中的自注意力机制及计算复杂度。
+3. 大模型"涌现能力"的来源与规模效应的关系。
+4. 专用AI与通用AI的本质区别：当前大模型仍是统计语言模型。
+5. AI伦理困境的辩证分析（如深度伪造、算法歧视）及治理策略。</textarea></div>
+        <div class="full"><label>作业布置</label><textarea id="homework" rows="4">作业一（个人）：AI概念思维导图——围绕"人工智能"绘制思维导图，涵盖定义、发展历程、核心技术、大模型原理、ANI vs AGI、3个应用领域，提交PDF/PNG。
+作业二（个人）：AI工具实操体验报告——任选2款AI工具真实使用，撰写800字体验报告。
+作业三（个人）：AI伦理议论文——以"人工智能的机遇与挑战"为题写1000~1200字。
+作业四（小组3~4人）：AI在垂直场景（智慧校园、智能客服、辅助编程）的创新应用方案，学期末展示6~8分钟。</textarea></div>
       </div>
     </div>
 
@@ -88,7 +147,7 @@ CIDR 无类别编址</textarea>
             <option value="abc" selected>GLM 中转站（校内可用·推荐）</option>
             <option value="zhipu">智谱 GLM 官方</option>
             <option value="deepseek">DeepSeek</option>
-            <option value="openai">OpenAI 兼容（自定义）</option>
+            <option value="AI Platform">AI Platform 兼容（自定义）</option>
           </select>
         </div>
         <div><label>模型</label>
@@ -98,8 +157,8 @@ CIDR 无类别编址</textarea>
             <option value="glm-5.2">glm-5.2</option>
           </select>
         </div>
-        <div class="full"><label>API Key <em>*</em></label><input id="aiApiKey" type="password" placeholder="填了才走 AI 多轮生成；留空则用离线模板兜底"></div>
-        <div class="full"><label>接口地址（OpenAI 兼容时必填，其余留空）</label><input id="aiBaseUrl" placeholder="如 https://open.bigmodel.cn/api/paas/v4"></div>
+        <div class="full"><label>API keys <em>*</em></label><input id="aiApiKey" type="password" placeholder="填了才走 AI 多轮生成；留空则用离线模板兜底"></div>
+        <div class="full"><label>接口地址（AI Platform 兼容时必填，其余留空）</label><input id="aiBaseUrl" placeholder="如 https://open.bigmodel.cn/api/paas/v4"></div>
         <div><label>思考强度（GLM）</label>
           <select id="aiReasoningEffort">
             <option value="max" selected>max（深度推理）</option>
@@ -129,12 +188,85 @@ if (location.protocol === 'file:') {
   });
 }
 
+// 5 专业快速模板数据（与 gen-5-majors.js 一致）
+var MAJORS = {
+  ai: { theme: 'plain', course: '人工智能基础与应用', chapter: '第1章 人工智能导论', topic: '人工智能技术概述与大模型应用',
+    audience: '2024级计算机应用技术专业', hours: '2 课时（90 分钟）',
+    knowledgePoints: ['人工智能的定义与本质','人工智能发展历程（三次浪潮）','人工智能核心技术分支（机器学习、深度学习、自然语言处理、计算机视觉）','大语言模型（LLM）的基本原理（Transformer架构、预训练与微调）','AIGC（AI生成内容）的概念与应用','专用人工智能（ANI）与通用人工智能（AGI）的区别','我国人工智能产业现状与人工智能+国家战略','AI伦理、安全与治理基本准则'],
+    goalKnowledge: '掌握人工智能的定义、研究范畴及其与计算机程序的本质区别（数据驱动 vs 规则驱动）。', goalAbility: '能够熟练使用主流AI工具解决实际问题。', goalQuality: '树立正确的AI伦理观，增强科技向善的社会责任感。',
+    keyPoints: '人工智能核心定义与主要技术分支', difficulties: '大模型工作原理与ANI/AGI区别', homework: '完成AI概念思维导图与AI工具实操体验报告' },
+  cs: { theme: 'plain', course: '计算机网络基础', chapter: '第3章 网络层', topic: 'IP地址与子网划分',
+    audience: '2024级计算机应用技术专业学生', hours: '2 课时（90 分钟）',
+    knowledgePoints: ['IP地址的结构与分类','子网掩码与网络地址','等长子网划分方法','CIDR无类别编址'],
+    goalKnowledge: '掌握IPv4地址点分十进制表示与A/B/C类地址范围，理解子网掩码的作用。', goalAbility: '能根据部门主机数需求完成子网规划，正确计算网络地址、广播地址与可用主机范围。', goalQuality: '养成严谨的计算习惯与网络工程规范意识。',
+    keyPoints: '子网掩码的作用与等长子网划分的计算方法', difficulties: '借位后网络位与主机位的划分理解及广播地址计算', homework: '基础题：将10.0.0.0/8划分为容纳1000台主机的子网；实训题：在eNSP完成三部门组网并截图。' },
+  me: { theme: 'ink', course: 'PLC应用技术', chapter: '项目三 电动机控制', topic: '三相异步电动机正反转的PLC控制',
+    audience: '2024级机电一体化技术专业学生', hours: '2 课时（90 分钟）',
+    knowledgePoints: ['正反转控制的电气原理','互锁与自锁电路设计','梯形图编程与接线','联机调试与故障排查'],
+    goalKnowledge: '掌握接触器互锁与按钮互锁的电气原理。', goalAbility: '能独立完成正反转控制梯形图编程、外部接线与联机调试。', goalQuality: '树立电气安全红线意识。',
+    keyPoints: '互锁电路的设计与梯形图实现', difficulties: '软件互锁与硬件互锁双重保护的必要性理解', homework: '绘制带双重互锁的梯形图并标注触点；整理调试数据与故障排查记录。' },
+  ac: { theme: 'midnight', course: '基础会计', chapter: '第四章 复式记账', topic: '借贷记账法与会计分录编制',
+    audience: '2024级大数据与会计专业学生', hours: '2 课时（90 分钟）',
+    knowledgePoints: ['会计恒等式与账户结构','借贷记账法的记账规则','会计分录的编制步骤','试算平衡表的编制'],
+    goalKnowledge: '掌握资产、负债、所有者权益类账户的借贷结构。', goalAbility: '能对常见经济业务独立编制会计分录。', goalQuality: '培育诚信为本、不做假账的职业道德底线。',
+    keyPoints: '借贷记账法记账规则与分录编制步骤', difficulties: '不同类型账户借贷方向的经济含义区分', homework: '完成教材习题10笔业务分录；编制本期发生额试算平衡表。' },
+  arch: { theme: 'slate', course: '建筑识图与构造', chapter: '第二章 建筑施工图识读', topic: '建筑平面图识读',
+    audience: '2024级建筑工程技术专业学生', hours: '2 课时（90 分钟）',
+    knowledgePoints: ['平面图的形成与图例','定位轴线与尺寸标注','门窗编号与开启方向','房间布局与交通流线'],
+    goalKnowledge: '掌握建筑平面图的形成原理与常用图例。', goalAbility: '能独立识读宿舍楼首层平面图，准确说出房间功能与尺寸。', goalQuality: '培养精益求精的工匠精神。',
+    keyPoints: '定位轴线编号规则与三道尺寸线识读', difficulties: '剖切符号与标高符号对应的空间想象', homework: '完成首层平面图识读记录表；抄绘标准层局部平面图（1:100）。' },
+  ec: { theme: 'sunrise', course: '网络营销实务', chapter: '项目五 内容营销', topic: '短视频营销策划与投放',
+    audience: '2024级电子商务专业学生', hours: '2 课时（90 分钟）',
+    knowledgePoints: ['短视频平台的流量逻辑','选题策划与脚本结构','拍摄剪辑要点','投放数据复盘'],
+    goalKnowledge: '理解短视频平台推荐算法的流量分发逻辑。', goalAbility: '能为本地产品独立完成短视频选题策划、脚本撰写与数据复盘。', goalQuality: '培育真实合规的营销底线意识。',
+    keyPoints: '黄金3秒开头与完播率导向的脚本设计', difficulties: '从完播率、互动率等数据指标反推内容优化策略', homework: '完成爆款视频要素拆解表；小组完成完整脚本与分镜。' }
+};
+
+function applyMajor(key) {
+  var m = MAJORS[key];
+  if (!m) return;
+  document.getElementById('course').value = m.course;
+  document.getElementById('chapter').value = m.chapter;
+  document.getElementById('topic').value = m.topic;
+  document.getElementById('audience').value = m.audience;
+  document.getElementById('hours').value = m.hours;
+  document.getElementById('knowledgePoints').value = m.knowledgePoints.join('\n');
+  document.getElementById('goalKnowledge').value = m.goalKnowledge;
+  document.getElementById('goalAbility').value = m.goalAbility;
+  document.getElementById('goalQuality').value = m.goalQuality;
+  document.getElementById('keyPoints').value = m.keyPoints;
+  document.getElementById('difficulties').value = m.difficulties;
+  document.getElementById('homework').value = m.homework;
+  theme = m.theme;
+  document.getElementById('themeRow').querySelectorAll('.themeOpt').forEach(function(x){ x.classList.remove('on'); });
+  var t = document.querySelector('#themeRow .themeOpt[data-theme="' + m.theme + '"]');
+  if (t) t.classList.add('on');
+}
+
+document.getElementById('majorRow').querySelectorAll('.themeOpt').forEach(function(el){
+  el.addEventListener('click', function(){
+    document.getElementById('majorRow').querySelectorAll('.themeOpt').forEach(function(x){ x.classList.remove('on'); });
+    el.classList.add('on');
+    applyMajor(el.dataset.major);
+  });
+});
+
+// 主题选择
+var theme = 'plain';
+document.getElementById('themeRow').querySelectorAll('.themeOpt').forEach(function(el){
+  el.addEventListener('click', function(){
+    document.getElementById('themeRow').querySelectorAll('.themeOpt').forEach(function(x){ x.classList.remove('on'); });
+    el.classList.add('on');
+    theme = el.dataset.theme;
+  });
+});
+
 // 服务商切换时联动模型列表
 var MODELS = {
   abc:      [['glm-5.3','glm-5.3（旗舰·深度思考）'],['glm-5.3-flash','glm-5.3-flash（快速）'],['glm-5.2','glm-5.2'],['deepseek-v4-pro','deepseek-v4-pro'],['deepseek-v4-flash','deepseek-v4-flash']],
   zhipu:    [['glm-5.3','glm-5.3（旗舰·深度思考）'],['glm-5.3-flash','glm-5.3-flash（快速）'],['glm-5.2','glm-5.2']],
   deepseek: [['deepseek-reasoner','deepseek-reasoner（深度推理）'],['deepseek-chat','deepseek-chat（通用）']],
-  openai:   [['','自定义（下方填接口地址+模型）']]
+  'AI Platform':   [['','自定义（下方填接口地址+模型）']]
 };
 function onProviderChange(){
   var p = document.getElementById('aiProvider').value;
@@ -166,6 +298,7 @@ document.getElementById('form').addEventListener('submit', async function(e){
     goalKnowledge: val('goalKnowledge'), goalAbility: val('goalAbility'), goalQuality: val('goalQuality'),
     keyPoints: val('keyPoints'), difficulties: val('difficulties'),
     preparation: val('preparation'), homework: val('homework'),
+    theme: theme,
     aiProvider: val('aiProvider'), aiModel: val('aiModel'), aiApiKey: val('aiApiKey'),
     aiBaseUrl: val('aiBaseUrl'), aiReasoningEffort: val('aiReasoningEffort'),
     aiWebSearch: document.getElementById('aiWebSearch').checked,
@@ -175,7 +308,7 @@ document.getElementById('form').addEventListener('submit', async function(e){
     var res = await fetch('/api/generate', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
     var j = await res.json();
     if (j.ok) {
-      var html = '<p style="color:var(--ok);font-weight:600;font-size:15px">生成成功：' + esc(j.title) + '</p>' +
+      var html = '<p style="color:var(--ok);font-weight:600;font-size:15px">生成成功：' + esc(j.title) + '（主题：' + esc(theme) + '）</p>' +
         '<a class="dl" href="' + j.docx + '">下载 Word 教案</a>' +
         '<a class="dl" href="' + j.pptx + '">下载 PPT 课件</a>';
       if (j.meta) {

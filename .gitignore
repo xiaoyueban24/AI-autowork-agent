@@ -5,6 +5,9 @@ node_modules/
 
 # 工具内部目录（会话工件，非项目内容）
 .workbench/
+
+# 归档（清理掉的冗余文件，不入库）
+.archive/
 .playwright-cli/
 .pptwise/
 

@@ -161,16 +161,26 @@ const server = http.createServer(async function (req, res) {
       const docx = path.join(OUTPUT, 'lesson_' + stamp + '.docx');
       let pptx = path.join(OUTPUT, 'slides_' + stamp + '.pptx');
       await genDocx(plan, docx);
-      // PPT 引擎链：pptwise > dsh-slides > pptxgenjs
+      // PPT 引擎链：指定主题(theme)时 dsh-slides 优先（唯一支持 5 主题）；否则 pptwise > dsh-slides > pptxgenjs
       let usedEngine = false;
       let engineName = 'pptxgenjs';
-      try {
-        const r = genPptxPptwise(plan, OUTPUT);
-        if (r.used) { usedEngine = true; engineName = 'pptwise'; pptx = r.pptxPath; }
-      } catch (e) { console.warn('[server] pptwise 失败，尝试 dsh-slides:', e.message); }
+      const wantTheme = input.theme && input.theme !== 'plain';
+      if (wantTheme) {
+        // 用户选了 5 主题之一 → 直接用 dsh-slides 渲染
+        try {
+          const r2 = await genPptxSlides(plan, OUTPUT, { theme: input.theme });
+          if (r2.used) { usedEngine = true; engineName = 'dsh-slides'; pptx = r2.pptxPath; }
+        } catch (e) { console.warn('[server] dsh-slides(theme) 失败，回退:', e.message); }
+      }
       if (!usedEngine) {
         try {
-          const r2 = await genPptxSlides(plan, OUTPUT);
+          const r = genPptxPptwise(plan, OUTPUT);
+          if (r.used) { usedEngine = true; engineName = 'pptwise'; pptx = r.pptxPath; }
+        } catch (e) { console.warn('[server] pptwise 失败，尝试 dsh-slides:', e.message); }
+      }
+      if (!usedEngine) {
+        try {
+          const r2 = await genPptxSlides(plan, OUTPUT, { theme: input.theme || 'plain' });
           if (r2.used) { usedEngine = true; engineName = 'dsh-slides'; pptx = r2.pptxPath; }
         } catch (e) { console.warn('[server] dsh-slides 失败，回退 pptxgenjs:', e.message); }
       }
