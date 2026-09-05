@@ -2,14 +2,14 @@
 chcp 65001 >nul
 setlocal
 
-REM 智备教案 - 前端设计台 一键启动
-REM 启动本地 zhibei-lesson 服务（如果未运行），然后打开设计台首页
+REM 智备教案 - 一体化生成台 一键启动
+REM 启动本地 zhibei-lesson 服务（如果未运行），然后打开一体化生成台
 
 set ROOT=%~dp0
 set PORT=3000
 
 echo ========================================
-echo   智备教案 - 前端设计台
+echo   智备教案 - 一体化生成台
 echo ========================================
 echo.
 
@@ -30,18 +30,13 @@ if %ERRORLEVEL%==0 (
   cd /d "%ROOT%"
 )
 
-REM 2) 用默认浏览器打开设计台首页与子页面
+REM 2) 用默认浏览器打开一体化生成台（单个页面集成全部功能）
 echo.
-echo [INFO] 正在打开设计台页面...
-start "" "%ROOT%index.html"
-start "" "%ROOT%一体化生成台.html"
-start "" "%ROOT%一键生成控制台.html"
-start "" "%ROOT%成品效果总览.html"
-start "" "%ROOT%竞品观察室.html"
-start "" "%ROOT%投稿作战板.html"
+echo [INFO] 正在打开一体化生成台...
+start "" "%ROOT%智备教案.html"
 
 echo.
-echo [DONE] 已在浏览器中打开 6 个页面
+echo [DONE] 已打开一体化生成台（含生成 + 成品效果总览）
 echo        本窗口可关闭，后端服务继续在后台运行
 echo.
 timeout /t 3 /nobreak >nul
