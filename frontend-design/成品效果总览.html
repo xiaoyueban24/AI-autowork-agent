@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>智备教案 · 成品效果总览</title>
+  <link rel="stylesheet" href="/api/worktable/template/dshell.css" />
+  <style>
+    .figGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .figCell { display: flex; flex-direction: column; gap: 6px; cursor: zoom-in; }
+    .figCell img { width: 100%; border-radius: 8px; border: 1px solid var(--dsw-alias-border-l1, #262b36); display: block; }
+    .figName { font-size: 12px; color: var(--dsw-alias-label-primary, #e6e8eb); font-weight: 600; }
+    .figDesc { font-size: 10.5px; color: var(--dsw-alias-label-tertiary, #6b7280); }
+    .deckTabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+    .deckTab { padding: 5px 12px; border-radius: 999px; border: 1px solid var(--dsw-alias-border-l1, #262b36); background: transparent; color: var(--dsw-alias-label-secondary, #9aa4b2); font-size: 12px; cursor: pointer; }
+    .deckTabOn { color: #3fb950; border-color: rgba(63,185,80,.5); }
+    #deckFrame { width: 100%; height: 620px; border: 1px solid var(--dsw-alias-border-l1, #262b36); border-radius: 10px; background: #fff; }
+    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.82); display: none; align-items: center; justify-content: center; z-index: 99; cursor: zoom-out; }
+    .lightbox img { max-width: 94vw; max-height: 92vh; border-radius: 8px; }
+    .hint { font-size: 11.5px; color: var(--dsw-alias-label-tertiary, #6b7280); }
+  </style>
+</head>
+<body>
+  <div class="dshell">
+    <h1 class="dshell-title">智备教案 · 成品效果总览</h1>
+    <p class="dshell-sub">这个窗口集中展示「智备教案」做出来的全部实际效果——投稿配图、5 个专业的成品课件（可翻页放映）、AI 生成的教案与课件</p>
+
+    <div class="dshell-grid">
+      <div class="dshell-stat"><div class="dshell-statLabel">可放映课件</div><div class="dshell-statValue">6 套</div><div class="dshell-statDelta">5 专业主题 + 1 dsh-slides 版</div></div>
+      <div class="dshell-stat"><div class="dshell-statLabel">投稿配图</div><div class="dshell-statValue">9 张</div><div class="dshell-statDelta">封面/截图/对比/架构图</div></div>
+      <div class="dshell-stat"><div class="dshell-statLabel">AI 生成成品</div><div class="dshell-statValue">教案+课件</div><div class="dshell-statDelta">VLAN 项目实训（含动画）</div></div>
+      <div class="dshell-stat"><div class="dshell-statLabel">生成耗时</div><div class="dshell-statValue">&lt; 10 分钟</div><div class="dshell-statDelta">四轮迭代全程自动</div></div>
+    </div>
+
+    <div class="dshell-tabs">
+      <button class="dshell-tab dshell-tabOn" data-tab="decks">课件放映（可直接翻页）</button>
+      <button class="dshell-tab" data-tab="figures">投稿配图画廊</button>
+      <button class="dshell-tab" data-tab="lesson">Word 教案效果</button>
+      <button class="dshell-tab" data-tab="app">应用界面</button>
+    </div>
+
+    <!-- 课件放映 -->
+    <div id="tab-decks">
+      <div class="dshell-card">
+        <h2 class="dshell-sub" style="margin:0 0 10px">成品课件 · 在框内直接放映（点课件切内容；方向键 ←/→ 翻页，按 S 看演讲备注）</h2>
+        <div class="deckTabs" id="deckTabs"></div>
+        <iframe id="deckFrame" src="zhibei-lesson/output-5majors/01-计算机应用技术-plain/课件_IP地址与子网划分.html"></iframe>
+        <p class="hint" style="margin:8px 0 0">这些是「智备教案」dsh-slides 引擎的真实产出：HTML 自包含演示（零依赖、浏览器即放映、Ctrl+P 可打印 PDF）。同一次生成还会输出对应的可编辑 .pptx 文件（在 zhibei-lesson/output-5majors/ 各目录下）。</p>
+      </div>
+    </div>
+
+    <!-- 配图画廊 -->
+    <div id="tab-figures" style="display:none">
+      <div class="dshell-card">
+        <h2 class="dshell-sub" style="margin:0 0 10px">投稿配图 9 张（投稿材料/images/ · 点击放大）</h2>
+        <div class="figGrid" id="figGrid"></div>
+      </div>
+    </div>
+
+    <!-- 教案效果 -->
+    <div id="tab-lesson" style="display:none">
+      <div class="dshell-card">
+        <h2 class="dshell-sub" style="margin:0 0 10px">AI 生成的 Word 教案（VLAN 项目实训 · 真实四轮迭代产出）</h2>
+        <img src="投稿材料/images/fig04-word-lesson.png" style="width:100%;border-radius:10px;border:1px solid var(--dsw-alias-border-l1,#262b36)" loading="lazy" alt="Word 教案效果图"/>
+        <p class="hint" style="margin:8px 0 0">完整 .docx 在 zhibei-lesson/output/（lesson_1788402268186.docx）：三维目标、重难点、7 环节教学过程表格、板书设计、作业、教学反思一应俱全，排版整齐可直接打印。配套 .pptx 含转场/入场动画与演讲者备注。</p>
+      </div>
+    </div>
+
+    <!-- 应用界面 -->
+    <div id="tab-app" style="display:none">
+      <div class="dshell-card">
+        <h2 class="dshell-sub" style="margin:0 0 10px">「智备教案」应用界面（真实运行截图）</h2>
+        <div class="figGrid">
+          <div class="figCell"><img src="投稿材料/images/fig02-form.png" loading="lazy" alt="输入表单"/><span class="figName">① 输入表单</span><span class="figDesc">课程信息 + 知识点 + 模型配置</span></div>
+          <div class="figCell"><img src="投稿材料/images/fig03-generating.png" loading="lazy" alt="生成中"/><span class="figName">② 四轮迭代进行中</span><span class="figDesc">联网检索 → 初稿 → 评审 → 定稿</span></div>
+          <div class="figCell"><img src="投稿材料/images/fig03-result.png" loading="lazy" alt="生成结果"/><span class="figName">③ 生成结果页</span><span class="figDesc">下载教案/课件 + 评审意见 + 思考过程</span></div>
+        </div>
+        <div class="dshell-divider"></div>
+        <p class="hint">💡 想现场操作？在项目 zhibei-lesson 目录运行 <code>node server.js</code> 后浏览器打开 http://localhost:3000 即可亲手生成一份。</p>
+      </div>
+    </div>
+
+    <p class="dshell-muted">成品效果总览 · 所有内容均为「智备教案」真实产出，非演示 mockup</p>
+  </div>
+  <div class="lightbox" id="lightbox"><img id="lightboxImg" src=""/></div>
+
+<script>
+  // 标签页
+  var tabs = document.querySelectorAll('.dshell-tab');
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      tabs.forEach(function (x) { x.classList.remove('dshell-tabOn'); });
+      t.classList.add('dshell-tabOn');
+      ['decks', 'figures', 'lesson', 'app'].forEach(function (id) {
+        document.getElementById('tab-' + id).style.display = (id === t.dataset.tab) ? '' : 'none';
+      });
+    });
+  });
+
+  // 课件切换
+  var DECKS = [
+    { n: '① 计算机应用技术 · IP地址与子网划分', s: 'zhibei-lesson/output-5majors/01-计算机应用技术-plain/课件_IP地址与子网划分.html' },
+    { n: '② 机电一体化 · PLC正反转控制', s: 'zhibei-lesson/output-5majors/02-机电一体化-ink/课件_三相异步电动机正反转的PLC控制.html' },
+    { n: '③ 大数据与会计 · 借贷记账法', s: 'zhibei-lesson/output-5majors/03-大数据与会计-midnight/课件_借贷记账法与会计分录编制.html' },
+    { n: '④ 建筑工程技术 · 建筑平面图识读', s: 'zhibei-lesson/output-5majors/04-建筑工程技术-slate/课件_建筑平面图识读.html' },
+    { n: '⑤ 电子商务 · 短视频营销策划', s: 'zhibei-lesson/output-5majors/05-电子商务-sunrise/课件_短视频营销策划与投放.html' },
+    { n: '⑥ dsh-slides 版 · IP地址与子网划分', s: 'zhibei-lesson/output-slides/课件_IP地址与子网划分.html' },
+  ];
+  var deckTabs = document.getElementById('deckTabs');
+  DECKS.forEach(function (d, i) {
+    var b = document.createElement('button');
+    b.className = 'deckTab' + (i === 0 ? ' deckTabOn' : '');
+    b.textContent = d.n;
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.deckTab').forEach(function (x) { x.classList.remove('deckTabOn'); });
+      b.classList.add('deckTabOn');
+      document.getElementById('deckFrame').src = d.s;
+    });
+    deckTabs.appendChild(b);
+  });
+
+  // 配图画廊
+  var FIGS = [
+    { f: '投稿材料/images/fig01-cover.png', n: '图01 作品封面', d: '1920×1080 · 深蓝主视觉' },
+    { f: '投稿材料/images/fig02-form.png', n: '图02 输入表单', d: '应用真实运行截图' },
+    { f: '投稿材料/images/fig03-generating.png', n: '图03a 生成中', d: '四轮迭代进行时' },
+    { f: '投稿材料/images/fig03-result.png', n: '图03b 结果页', d: '评审意见/思考过程可见' },
+    { f: '投稿材料/images/fig04-word-lesson.png', n: '图04 Word 教案', d: 'AI 生成教案效果图' },
+    { f: '投稿材料/images/fig05-ppt-deck.png', n: '图05 PPT 课件', d: '8 页拼图 · 原生可编辑' },
+    { f: '投稿材料/images/fig06-compare.png', n: '图06 对比图', d: '传统 2~3 小时 vs 1~3 分钟' },
+    { f: '投稿材料/images/fig07-architecture.png', n: '图07 架构图', d: '四轮迭代 + 双引擎输出' },
+    { f: '投稿材料/images/fig08-cta.png', n: '图08 导流图', d: '结尾点赞转发引导' },
+  ];
+  var grid = document.getElementById('figGrid');
+  FIGS.forEach(function (g) {
+    var cell = document.createElement('div');
+    cell.className = 'figCell';
+    cell.innerHTML = '<img loading="lazy" src="' + g.f + '" alt="' + g.n + '"/>' +
+      '<span class="figName">' + g.n + '</span><span class="figDesc">' + g.d + '</span>';
+    cell.addEventListener('click', function () {
+      document.getElementById('lightboxImg').src = g.f;
+      document.getElementById('lightbox').style.display = 'flex';
+    });
+    grid.appendChild(cell);
+  });
+  document.getElementById('lightbox').addEventListener('click', function () {
+    this.style.display = 'none';
+  });
+</script>
+</body>
+</html>

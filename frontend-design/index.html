@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>智备教案 · 前端设计台</title>
+  <link rel="stylesheet" href="/api/worktable/template/dshell.css" />
+  <style>
+    body { padding: 24px; max-width: 1280px; margin: 0 auto; }
+    .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .header h1 { font-size: 22px; margin: 0; }
+    .header .meta { color: var(--dsw-alias-label-tertiary, #6b7280); font-size: 12px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 16px; }
+    .card { display: block; padding: 18px 20px; border: 1px solid var(--dsw-alias-border-l1, #262b36); border-radius: 12px; text-decoration: none; color: var(--dsw-alias-label-primary, #e6e8eb); transition: transform .15s, border-color .15s, background .15s; }
+    .card:hover { transform: translateY(-2px); border-color: rgba(63,185,80,.5); background: var(--dsw-alias-fill-l1, rgba(255,255,255,.02)); }
+    .card .badge { display: inline-block; font-size: 10.5px; padding: 2px 8px; border-radius: 999px; background: rgba(63,185,80,.15); color: #3fb950; margin-bottom: 8px; }
+    .card h2 { font-size: 16px; margin: 0 0 6px 0; }
+    .card p { font-size: 12.5px; color: var(--dsw-alias-label-secondary, #9aa4b2); margin: 0; line-height: 1.6; }
+    .actions { margin-top: 28px; padding: 16px 20px; border: 1px dashed var(--dsw-alias-border-l1, #262b36); border-radius: 12px; background: var(--dsw-alias-fill-l1, rgba(255,255,255,.02)); }
+    .actions h3 { font-size: 13px; margin: 0 0 10px 0; color: var(--dsw-alias-label-secondary, #9aa4b2); font-weight: 500; }
+    .actions ol { margin: 0; padding-left: 20px; font-size: 12.5px; line-height: 1.8; color: var(--dsw-alias-label-secondary, #9aa4b2); }
+    .actions code { background: var(--dsw-alias-fill-l2, rgba(255,255,255,.04)); padding: 2px 6px; border-radius: 4px; font-size: 11.5px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <h1>智备教案 · 前端设计台</h1>
+      <div class="meta">浙江工业职业技术学院 · 电信杯 AI 应用大赛 · v2.0</div>
+    </div>
+    <span class="badge" style="background:rgba(63,185,80,.15);color:#3fb950;padding:4px 12px;border-radius:999px;font-size:11.5px;">就绪</span>
+  </div>
+
+  <p style="color:var(--dsw-alias-label-secondary,#9aa4b2);font-size:13px;line-height:1.7;margin:0 0 4px 0;">
+    一句话做完整套参赛作品：填课程信息 → 一键生成 PPTX / Word / PDF / HTML / Markdown 六件套。
+  </p>
+
+  <div class="grid">
+    <a class="card" href="一体化生成台.html">
+      <span class="badge">核心</span>
+      <h2>一体化生成台</h2>
+      <p>填课程信息 → 后台四阶段流水线联网检索、初稿、评审、定稿 → 一次性产出六件套并提供下载。</p>
+    </a>
+    <a class="card" href="一键生成控制台.html">
+      <span class="badge">调度</span>
+      <h2>一键生成控制台</h2>
+      <p>触发并观察 /api/unified 异步任务：实时阶段、四阶段进度、错误回显、产物下载链接。</p>
+    </a>
+    <a class="card" href="成品效果总览.html">
+      <span class="badge">展示</span>
+      <h2>成品效果总览</h2>
+      <p>把生成的 PPTX / Word / PDF / HTML 等产物并排预览，展示 AI 一次成型的真实效果。</p>
+    </a>
+    <a class="card" href="竞品观察室.html">
+      <span class="badge">分析</span>
+      <h2>竞品观察室</h2>
+      <p>对比参考案例，分析 AI 教学产品的差异化定位与可借鉴的功能点。</p>
+    </a>
+    <a class="card" href="投稿作战板.html">
+      <span class="badge">运营</span>
+      <h2>投稿作战板</h2>
+      <p>整理大赛时间线、评分项、提交清单和风险点，把作品打磨到能稳定获奖的水平。</p>
+    </a>
+  </div>
+
+  <div class="actions">
+    <h3>本地一键启动</h3>
+    <ol>
+      <li>双击同目录下的 <code>启动设计台.bat</code>，自动用默认浏览器打开本页面与所有子页面。</li>
+      <li>如需在浏览器里完整运行生成台，需先启动本地后端：项目根目录的 <code>一键启动.bat</code> 会拉起 zhibei-lesson 服务（3000 端口）。</li>
+      <li>所有子页面都已引用 <code>/api/worktable/template/dshell.css</code> 工作台原生皮肤，组件类参考 <code>/api/worktable/template/dshell.html</code>。</li>
+    </ol>
+  </div>
+</body>
+</html>
